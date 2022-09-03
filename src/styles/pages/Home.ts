@@ -10,6 +10,7 @@ import {
 
 import AssetSpaceGirl from '../../assets/illustrations/space-girl.svg';
 import AssetLayingMan from '../../assets/illustrations/laying-man.svg';
+import Quizhistory from '../../assets/illustrations/quizan.svg';
 import AssetImageReality from '../../assets/illustrations/image-reality.svg';
 import AssetManUploading from '../../assets/illustrations/man-uploading.svg';
 import AssetSocialMedias from '../../assets/illustrations/social-medias.svg';
@@ -183,6 +184,11 @@ export const Two = styled.div<HeaderProps>`
 `;
 
 export const Three = styled.div<HeaderProps>`
+    ${props => props.$on && css`
+        transform: rotate(-45deg) translate(8px, -9px);
+    `}
+`;
+export const Four = styled.div<HeaderProps>`
     ${props => props.$on && css`
         transform: rotate(-45deg) translate(8px, -9px);
     `}
@@ -398,6 +404,16 @@ export const LayingMan = styled(Object(AssetLayingMan))`
     }
 `;
 
+export const Quizhist = styled(Object(Quizhistory))`
+    width: 40%;
+    height: auto;
+
+    @media screen and (max-width: 540px) {
+        display: none;
+    }
+`;
+
+
 export const SectionTwo = styled.div`
     h2 {
         margin-left: auto;
@@ -495,6 +511,73 @@ export const SectionThree = styled.div`
             }
         }
     }
+
+    @media screen and (max-width: 768px) {
+        & > div {
+            grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+
+            &:before {
+                top: 61%;
+            }
+        }
+    }
+
+    @media screen and (max-width: 710px) {
+        & > div {
+            &:before {
+                top: 58%;
+            }
+        }
+    }
+
+    @media screen and (max-width: 540px) {
+        & > div {
+            grid-template-columns: 1fr;
+
+            &:before {
+                display: none;
+            }
+        }
+    }
+`;
+
+export const SectionFour = styled.div`
+h2 {
+    margin-right: auto;
+}
+
+h3 {
+    margin-right: auto;
+    font-size: 24px;
+    & > span {
+        color: var(--primary) !important;
+    }
+}
+
+p {
+    font-size: 24px;
+}
+
+& > div {
+    display: flex;
+
+    padding: 0 3.2rem;
+
+    p {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    & > div {
+        p {
+            width: 100%;
+        }
+    }
+}
+
+
+
 
     @media screen and (max-width: 768px) {
         & > div {

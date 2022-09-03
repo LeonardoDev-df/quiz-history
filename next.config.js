@@ -1,14 +1,23 @@
-const withPWA = require('next-pwa')
-const runtimeCaching = require('next-pwa/cache')
+const withPWA = require('next-pwa');
 
-module.exports = withPWA({
-    pwa: {
-        dest: 'public',
-        runtimeCaching
-    },
-    eslint: {
-        // Warning: Dangerously allow production builds to successfully complete even if
-        // your project has ESLint errors.
-        ignoreDuringBuilds: true
-    }
-})
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
+  compiler: {
+    removeConsole: process.env.NODE_ENV !== 'development',
+  },
+  pwa: {
+    dest: 'public',
+    disable: process.env.NODE_ENV === 'development',
+    register: true,
+  },
+};
+
+module.exports = () => {
+  const plugins = [withPWA];
+  const config = plugins.reduce((acc, next) => next(acc), {
+    ...nextConfig,
+  });
+  return config;
+};

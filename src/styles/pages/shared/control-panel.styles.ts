@@ -3,6 +3,9 @@ import { rgba, darken, shade } from 'polished'
 import { Form } from '@unform/web'
 
 import { Button } from '../../../components/Button'
+import EmblemOuro from '../../../assets/illustrations/ouro.svg';
+import EmblemPrata from '../../../assets/illustrations/prata.svg';
+import EmblemBronze from '../../../assets/illustrations/bronze.svg';
 import {
     Email,
     User,
@@ -32,6 +35,37 @@ const actButtonVariation = {
     `
 }
 
+export const EmblemGold = styled(Object(EmblemOuro))`
+    width: 30%;
+    height: auto;
+
+    h3{
+        margin-top: 0%;
+    }
+
+    @media screen and (max-width: 540px) {
+        display: none;
+    }
+`;
+
+export const EmblemSilver = styled(Object(EmblemPrata))`
+    width: 30%;
+    height: auto;
+
+    @media screen and (max-width: 540px) {
+        display: none;
+    }
+`;
+
+export const EmblemBronzi = styled(Object(EmblemBronze))`
+    width: 30%;
+    height: auto;
+
+    @media screen and (max-width: 540px) {
+        display: none;
+    }
+`;
+
 
 export const Container = styled.div`
     height: 100%;
@@ -47,6 +81,9 @@ export const Container = styled.div`
     }
 `
 
+
+
+
 export const Paper = styled.div`
     background: ${props => props.theme.colors.paper};
     width: min(964px, 90%);
@@ -55,6 +92,13 @@ export const Paper = styled.div`
     position: relative;
     /* box-shadow: 0px 0px 50px 18px rgba(0,0,0,0.1); */
 
+
+    .msg{
+        text-align: center;
+    }
+    .emblem{
+        text-align: center;
+    }
     padding: 2.4rem;
     margin: auto;
     /* margin-top: 4rem; */
@@ -133,6 +177,12 @@ export const StForm = styled(Form)`
     & > fieldset {
         h3 {
             margin-bottom: .8rem;
+
+            padding: 15px;
+        }
+
+        h2{
+            text-align: center;
         }
 
         + fieldset {
@@ -156,6 +206,32 @@ export const FormGroup = styled.div<{ mult?: boolean }>`
         margin-bottom: .4rem;
     }
 
+
+    ${props => props.mult && css`
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
+        grid-gap: 2rem;
+
+        @media screen and (max-width: 490px) {
+            grid-template-columns: 1fr;
+            grid-gap: .8rem;
+        }
+    `}
+
+`
+
+
+export const FormGroup2 = styled.div<{ mult?: boolean }>`
+    + div {
+        margin-top: 1.2rem;
+    }
+
+    label {
+        display: block;
+        margin-bottom: .4rem;
+    }
+
+
     ${props => props.mult && css`
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
@@ -171,6 +247,17 @@ export const FormGroup = styled.div<{ mult?: boolean }>`
 
 export const FormInputContainer = styled.div<{ gridColumn?: string }>`
     grid-column: ${props => props.gridColumn ? props.gridColumn : 'auto'};
+
+    .flex-container{
+        display: flex;
+        justify-content: space-evenly;
+        padding-top: 10px;
+
+    }
+
+    .vtt{
+       text-align:center;
+    }
 
     @media screen and (max-width: 490px) {
         grid-column: auto;
@@ -303,6 +390,15 @@ export const StTrash = styled(Trash)`
     width: 2rem;
     height: 2rem;
 `
+export const StTrashEmble = styled(Trash)`
+    width: 5rem;
+    height: 5rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    cursor: pointer;
+`
 
 export const StatusFlag = styled.div<{
     colorType: "red" | "green" | "blue"
@@ -317,3 +413,193 @@ export const StatusFlag = styled.div<{
     display: flex;
     justify-content: center;
 `
+
+interface FlexProps {
+    /* activate flexbox for top element */
+    container?: boolean;
+    alignItems?:
+      | 'stretch'
+      | 'center'
+      | 'flex-start'
+      | 'flex-end'
+      | 'baseline'
+      | 'initial'
+      | 'inherit';
+    justifyContent?:
+      | 'flex-start'
+      | 'flex-end'
+      | 'space-between'
+      | 'space-around'
+      | 'center'
+      | 'initial'
+      | 'inherit';
+    direction?: 'column' | 'row';
+    flexWrap?: 'wrap' | 'nowrap' | 'reverse';
+    height?: string;
+    maxHeight?: string;
+    width?: string;
+    maxWidth?: string;
+    alignSelf?: 'stretch' | 'center' | 'start' | 'end';
+    justifySelf?: 'stretch' | 'center' | 'start' | 'end';
+    bgColor?: string;
+    flex?: string;
+    flexBasis?: string;
+    flexGrow?: number;
+    flexShrink?: number;
+
+    /* padding and margin */
+    padding?: number | number[];
+    margin?: number | number[];
+
+    pushDown?: boolean;
+    pushLeft?: boolean;
+    pushRight?: boolean;
+    pushTop?: boolean;
+  }
+
+  export const Flex = styled.div<FlexProps>`
+    ${({
+      container,
+      alignItems,
+      justifyContent,
+      direction,
+      flexWrap,
+      height,
+      maxHeight,
+      bgColor,
+      flex,
+      flexBasis,
+      flexGrow,
+      flexShrink,
+      width,
+      maxWidth,
+      padding,
+      margin,
+      justifySelf,
+      alignSelf,
+      pushDown,
+      pushLeft,
+      pushRight,
+      pushTop,
+    }) => css`
+      display: ${container ? 'flex' : 'block'};
+      ${justifyContent &&
+      css`
+        justify-content: ${justifyContent};
+      `}
+      ${alignItems &&
+      css`
+        align-items: ${alignItems};
+      `}
+        ${direction &&
+      css`
+        flex-direction: ${direction};
+      `}
+      ${flexWrap &&
+      css`
+        flex-wrap: ${flexWrap};
+      `}
+      ${height &&
+      css`
+        height: ${height};
+      `}
+      ${maxHeight &&
+      css`
+        max-height: ${maxHeight};
+      `}
+      ${width &&
+      css`
+        width: ${width};
+      `}
+      ${maxWidth &&
+      css`
+        max-width: ${maxWidth};
+      `}
+      ${bgColor &&
+      css`
+        background-color: ${bgColor};
+      `}
+      /* additional flex properties */
+      ${flex &&
+      css`
+        flex: ${flex};
+      `}
+      ${flexGrow &&
+      css`
+        flex-grow: ${flexGrow};
+      `}
+      ${flexShrink &&
+      css`
+        flex-shrink: ${flexShrink};
+      `}
+      ${flexBasis &&
+      css`
+        flex-basis: ${flexBasis};
+      `}
+      ${alignSelf &&
+      css`
+        align-self: ${alignSelf};
+      `}
+      ${justifySelf &&
+      css`
+        justify-self: ${justifySelf};
+      `}
+      ${handleMarginOrPadding(margin)}
+      ${handleMarginOrPadding(padding, true)}
+      ${pushDown &&
+      css`
+        margin-top: auto;
+      `}
+      ${pushTop &&
+      css`
+        margin-bottom: auto;
+      `}
+      ${pushLeft &&
+      css`
+        margin-right: auto;
+      `}
+      ${pushRight &&
+      css`
+        margin-left: auto;
+      `}
+    `}
+  `;
+
+  const handleMarginOrPadding = (
+    values?: number | number[],
+    isPadding?: boolean
+  ) => {
+    if (!values) return;
+
+    if (Array.isArray(values)) {
+      if (values.length > 4) {
+        throw new Error(`${isPadding ? 'Padding' : 'Margin'} can have 4 values`);
+      }
+
+      // [1, 2] => '1rem 2rem'
+      const convertValuesArrayToString = values
+        .map((v) => (v === 0 ? 0 : `${v}rem`))
+        .join(' ');
+
+      if (isPadding) {
+        return css`
+          padding: ${convertValuesArrayToString};
+        `;
+      }
+
+      return css`
+        margin: ${convertValuesArrayToString};
+      `;
+    }
+
+    if (isPadding) {
+      return css`
+        padding: ${values}rem;
+      `;
+    }
+
+    return css`
+      margin: ${values}rem;
+    `;
+  };
+

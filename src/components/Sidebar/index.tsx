@@ -4,6 +4,9 @@ import { useRouter } from 'next/router'
 import { ThemeContext } from 'styled-components'
 import { shade, lighten } from 'polished'
 import Switch from 'react-switch'
+import * as RiIcons from 'react-icons/ri'
+import * as IoIcons from 'react-icons/io'
+import * as AiIcons from 'react-icons/ai'
 
 import { AuthContext } from '../../contexts/auth'
 import {
@@ -31,7 +34,7 @@ const userTabs = [
         icon: StUser,
         title: 'Perfil',
         urlPath: 'profile',
-        isActive: true
+        isActive: false
     },
     {
         id: 2,
@@ -45,6 +48,28 @@ const userTabs = [
         icon: StVr,
         title: 'Meus uploads',
         urlPath: 'my-uploads',
+        isActive: false
+    }
+    ,
+    {
+        id: 7,
+        icon: StDashboard,
+        title: ' Criar Quiz',
+        urlPath: 'Quiz',
+        isActive: false
+    },
+    {
+        id: 8,
+        icon: StDashboard,
+        title: ' Listar Quiz',
+        urlPath: 'ListQuiz',
+        isActive: false
+    },
+    {
+        id: 9,
+        icon: StDashboard,
+        title: 'Emblemas',
+        urlPath: 'emblems',
         isActive: false
     }
 ]
@@ -142,7 +167,7 @@ export const Sidebar = ({ changeTheme, showSidebar }: SidebarProps) => {
 
     return (
         <Container showSidebar={showSidebar}>
-            {items.map(({ id, title, icon: Icon, isActive, urlPath }) => (
+            {items.map(({ id, title, icon: Icon, isActive, urlPath}) => (
                 <Item
                     key={id}
                     active={isActive}
