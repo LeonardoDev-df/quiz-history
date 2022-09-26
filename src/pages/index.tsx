@@ -85,7 +85,7 @@ export default function Home() {
                                 <Link href="#about">Sobre</Link>
                             </li>
                             <li>
-                                <Link href="#ranking">Quiz</Link>
+                                <Link href="#Quiz">Quiz</Link>
                             </li>
                             <li>
                                 <Link href="/search-map">Explorar</Link>
@@ -209,7 +209,7 @@ export default function Home() {
                     </div>
                 </SectionThree>
 
-                <SectionFour id="ranking">
+                <SectionFour id="Quiz">
                     <h2>
                         Sobre <span>o Quiz History</span>
                     </h2>

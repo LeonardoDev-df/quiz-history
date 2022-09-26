@@ -1,11 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import { Flex } from './Flex';
-
-import { Box } from './Box';
-
-
 import {
     useContext,
     useRef,
@@ -21,29 +13,42 @@ import { GetServerSideProps } from 'next'
 import { parseCookies } from 'nookies'
 import * as Yup from 'yup'
 import axios from 'axios'
+import { Grid, Row, Col } from 'react-flexbox-grid';
+import App from './App';
+import { Flex } from './Flex';
+
+import { Box } from './Box';
+
+
 
 import {
     Container,
     Paper,
-    PaperQuiz,
+    EmblemGold,
+    EmblemSilver,
+    EmblemBronzi,
     FormGroup,
+    StTrashEmble,
+    StAdd,
     StButton,
     Copy,
+    PseudoInput,
     StForm,
     FormInputContainer
-} from '../../styles/pages/shared/control-panel.styles'
-import { SidebarLayout } from '../../components/layouts/sidebar-layout-quiz'
-import getValidationErrors from '../../utils/getValidationErrors'
-import { sortArrayObject } from '../../utils/sortArrayObject'
-import { asyncHandler } from '../../utils/asyncHandler'
-import { InputMask } from '../../components/InputMask'
-import { FileForm } from '../../components/FileForm'
-import { AUTH_TOKEN_KEY } from '../../contexts/auth'
-import { Loading } from '../../components/Loading'
-import { Select } from '../../components/Select'
-import { useToast } from '../../hooks/use-toast'
-import { Input } from '../../components/Input'
-import Head from '../../infra/components/Head'
+} from '../../../../styles/pages/shared/control-panel.styles'
+import { SidebarLayout } from '../../../../components/layouts/sidebar-layout'
+import getValidationErrors from '../../../../utils/getValidationErrors'
+import { sortArrayObject } from '../../../../utils/sortArrayObject'
+import { asyncHandler } from '../../../../utils/asyncHandler'
+import { InputMask } from '../../../../components/InputMask'
+import { FileForm } from '../../../../components/FileForm'
+import { AUTH_TOKEN_KEY } from '../../../../contexts/auth'
+import { Loading } from '../../../../components/Loading'
+import { Select } from '../../../../components/Select'
+import { useToast } from '../../../../hooks/use-toast'
+import { Input } from '../../../../components/Input'
+import Head from '../../../../infra/components/Head'
+import { RiAlignCenter } from 'react-icons/ri'
 
 interface CepResponse {
     cep: string
@@ -255,67 +260,76 @@ function Upload({ UFOptions }) {
         },
         []
     )
+
+
     return (
         <Container>
-            <Head title="Upload 3D | RV History" />
 
-            <PaperQuiz ref={divRef}>
+            <Paper ref={divRef}>
+            <h2 className='emblem'>Emblemas Cadastrados</h2>
+            <Flex
+            padding={3}
+            bgColor=""
+            height="2
+            50px"
+            container
+            justifyContent="space-around"
+            alignItems="flex-start"
+            >
+                <EmblemBronzi />
 
-                <StForm ref={formRef} onSubmit={handleFormSubmit}>
-                <h1>Seja Bem-Vindo ao </h1>
-                 <h1>Quiz History</h1>
+                <EmblemSilver />
 
-
-
-                <Flex
-                padding={5}
-                bgColor=""
-                height="350px"
-                container
-                justifyContent="space-around"
-                alignItems="flex-start"
-                >
-
-                <Box width="350px"
-                     height="300px"
-                     display="flex"
-                >
-
-                     <div className='borda'>
-                         <h3>Pontuação dos Melhores Colocados</h3>
-
-                         <div className='ponto'>
-                            <div>Apelido</div> <div>Pontos</div>
-                         </div>
-
-
-
-                        <p>_______________________________________</p>
-
-                        <div className='ponto'>
-                            <div>Luiz</div> <div>60</div>
-                         </div> <div className='ponto'>
-                            <div>Pedro</div> <div>50</div>
-                         </div> <div className='ponto'>
-                            <div>José</div> <div>40</div>
-                         </div>
-
-
-                     </div>
-
-
-
-
-                </Box>
-
+                <EmblemGold/>
             </Flex>
 
 
 
+        <Flex
+            padding={2}
+            bgColor=""
+            height="30px"
+            container
+            justifyContent="space-between"
+            alignItems="initial"
 
-                </StForm>
+        >
+
+        <StTrashEmble  />
+
+        <StTrashEmble  />
+
+        <StTrashEmble  />
+
+
+        </Flex>
+
+
+        <Flex
+            padding={5}
+            bgColor=""
+            height="30px"
+            container
+            justifyContent="space-between"
+            alignItems="initial"
+
+        >
+
+            <h3>5 Pontos no Quiz </h3>
+
+            <h3>7 Pontos no Quiz</h3>
+
+            <h3>10 Pontos no Quiz</h3>
+
+
+        </Flex>
+            <h3 className='msg'>Ao participar do quiz o usuário recebe o emblema e acumula pontos para classificação no ranking.</h3>
+
+
                 <Loading isVisible={isLoading} />
-            </PaperQuiz>
+            </Paper>
+
+
 
             <Copy>&copy; 2021 RVHistory. All right reserved.</Copy>
         </Container>
@@ -326,6 +340,25 @@ Upload.Layout = SidebarLayout
 
 export default Upload
 
+export const getServerSideProps: GetServerSideProps = async ctx => {
+    // * isAutheticated method
+    const { [AUTH_TOKEN_KEY]: token } = parseCookies(ctx)
+
+    if (!token) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false
+            }
+        }
+    }
 
 
 
+
+    return {
+        props: {
+
+        }
+    }
+}

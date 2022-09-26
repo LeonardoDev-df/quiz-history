@@ -29,6 +29,7 @@ import {
     EmblemBronzi,
     FormGroup,
     StTrashEmble,
+    StAdd,
     StButton,
     Copy,
     PseudoInput,
@@ -269,39 +270,60 @@ function Upload({ UFOptions }) {
             <Flex
             padding={3}
             bgColor=""
-            height="200px"
+            height="230px"
             container
             justifyContent="space-around"
             alignItems="flex-start"
-        >
-            <EmblemBronzi />
-            
-            <EmblemSilver />
-            
-            <EmblemGold/>
-            
-        </Flex>
+            >
+                <EmblemBronzi />
+
+                <EmblemSilver />
+
+                <EmblemGold/>
+            </Flex>
+
+
 
         <Flex
-            padding={10}
+            padding={0}
             bgColor=""
-            height="100px"
+            height="30px"
             container
             justifyContent="space-between"
             alignItems="initial"
-         
+
         >
-            
-            <h3>5 Pontos no Quiz </h3>
-            
-            <h3>7 Pontos no Quiz</h3>
-           
-            <h3>10 Pontos no Quiz</h3>
-        </Flex>
+
         <StTrashEmble  />
+
+        <StTrashEmble  />
+
+        <StTrashEmble  />
+
+
+        </Flex>
+
+
+            <div className='pontos'>
+
+                     <div>
+                    <h3>5 Pontos</h3>
+                    </div>
+                    <div>
+                    <h3>7 Pontos </h3>
+                    </div>
+
+                    <div>
+                    <h3>10 Pontos </h3>
+                    </div>
+            </div>
+
+
+
+
             <h3 className='msg'>Ao participar do quiz o usuário recebe o emblema e acumula pontos para classificação no ranking.</h3>
 
-           
+
                 <Loading isVisible={isLoading} />
             </Paper>
 

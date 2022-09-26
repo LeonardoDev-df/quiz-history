@@ -1,9 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { Flex } from './Flex';
-
-import { Box } from './Box';
 
 
 import {
@@ -25,25 +22,24 @@ import axios from 'axios'
 import {
     Container,
     Paper,
-    PaperQuiz,
     FormGroup,
     StButton,
     Copy,
     StForm,
     FormInputContainer
-} from '../../styles/pages/shared/control-panel.styles'
-import { SidebarLayout } from '../../components/layouts/sidebar-layout-quiz'
-import getValidationErrors from '../../utils/getValidationErrors'
-import { sortArrayObject } from '../../utils/sortArrayObject'
-import { asyncHandler } from '../../utils/asyncHandler'
-import { InputMask } from '../../components/InputMask'
-import { FileForm } from '../../components/FileForm'
-import { AUTH_TOKEN_KEY } from '../../contexts/auth'
-import { Loading } from '../../components/Loading'
-import { Select } from '../../components/Select'
-import { useToast } from '../../hooks/use-toast'
-import { Input } from '../../components/Input'
-import Head from '../../infra/components/Head'
+} from '../../../../styles/pages/shared/control-panel.styles'
+import { SidebarLayout } from '../../../../components/layouts/sidebar-layout-quiz'
+import getValidationErrors from '../../../../utils/getValidationErrors'
+import { sortArrayObject } from '../../../../utils/sortArrayObject'
+import { asyncHandler } from '../../../../utils/asyncHandler'
+import { InputMask } from '../../../../components/InputMask'
+import { FileForm } from '../../../../components/FileForm'
+import { AUTH_TOKEN_KEY } from '../../../../contexts/auth'
+import { Loading } from '../../../../components/Loading'
+import { Select } from '../../../../components/Select'
+import { useToast } from '../../../../hooks/use-toast'
+import { Input } from '../../../../components/Input'
+import Head from '../../../../infra/components/Head'
 
 interface CepResponse {
     cep: string
@@ -255,67 +251,80 @@ function Upload({ UFOptions }) {
         },
         []
     )
+
+
+    const optionsCategory = [
+        { value: 'Sítio', label: 'Sítio' },
+        { value: 'Monumento', label: 'Monumento' },
+        { value: 'Museu', label: 'Museu' }
+      ]
+    const optionsDificulty = [
+        { value: 'Facil', label: 'Fácil' },
+        { value: 'Medio', label: 'Médio' },
+        { value: 'Dificil', label: 'Difícil' }
+      ]
     return (
         <Container>
             <Head title="Upload 3D | RV History" />
 
-            <PaperQuiz ref={divRef}>
+            <Paper ref={divRef}>
 
-                <StForm ref={formRef} onSubmit={handleFormSubmit}>
-                <h1>Seja Bem-Vindo ao </h1>
-                 <h1>Quiz History</h1>
+            <StForm ref={formRef} onSubmit={handleFormSubmit}>
+                <h1>Quiz History</h1>
+                <FormGroup mult={true}>
 
+                    <FormInputContainer gridColumn="2 / 4" id="apelido">
+                        <label htmlFor="complement" id="category">Informe seu apelido</label>
+                        <Input name="complement" id="complement" />
+                    </FormInputContainer>
 
+                </FormGroup>
 
-                <Flex
-                padding={5}
-                bgColor=""
-                height="350px"
-                container
-                justifyContent="space-around"
-                alignItems="flex-start"
-                >
+                <FormGroup mult={true}>
 
-                <Box width="350px"
-                     height="300px"
-                     display="flex"
-                >
+                           
+                            <div id="category">
+                                <label htmlFor="uf" id="category">Selecione a Categoria</label>
 
-                     <div className='borda'>
-                         <h3>Pontuação dos Melhores Colocados</h3>
+                                <Select
+                                    options={optionsCategory}
+                                    name="uf"
+                                    id="category"
+                                    instanceId="uf"
+                                    // isSearchable
+                                    onChange={''}
+                                    placeholder="Selecione..."
+                                />
+                            </div>
 
-                         <div className='ponto'>
-                            <div>Apelido</div> <div>Pontos</div>
-                         </div>
-
-
-
-                        <p>_______________________________________</p>
-
-                        <div className='ponto'>
-                            <div>Luiz</div> <div>60</div>
-                         </div> <div className='ponto'>
-                            <div>Pedro</div> <div>50</div>
-                         </div> <div className='ponto'>
-                            <div>José</div> <div>40</div>
-                         </div>
+                            
 
 
-                     </div>
+                        </FormGroup>
+                        <FormGroup mult={true}>
+
+                        <div id="category">
+                                <label htmlFor="city" id="category">Selecione a dificuldade</label>
+
+                                <Select
+                                    options={optionsDificulty}
+                                    name="city"
+                                    id="category"
+                                    instanceId="city"
+                                    placeholder="Selecione..."
+                                />
+                            </div>
 
 
+                        </FormGroup>
 
-
-                </Box>
-
-            </Flex>
-
-
-
+                    <React.StrictMode>
+                     <App />
+                    </React.StrictMode>
 
                 </StForm>
                 <Loading isVisible={isLoading} />
-            </PaperQuiz>
+            </Paper>
 
             <Copy>&copy; 2021 RVHistory. All right reserved.</Copy>
         </Container>
@@ -325,6 +334,12 @@ function Upload({ UFOptions }) {
 Upload.Layout = SidebarLayout
 
 export default Upload
+
+
+
+
+
+
 
 
 

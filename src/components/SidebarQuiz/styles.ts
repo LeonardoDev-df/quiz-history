@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 import { rgba, shade } from 'polished'
 
 import AssetLogo from '../../assets/logos/logo-extended.svg';
-import { Upload, BadgeVrFill, LogOut, User, Admin, Users, Dashboard, Quiz } from '../../styles/Icons'
+import { Upload, BadgeVrFill, LogOut, User, Admin, Users, Dashboard } from '../../styles/Icons'
 
 interface SidebarProps {
     showSidebar: boolean
@@ -13,8 +13,7 @@ export const Container = styled.div<SidebarProps>`
     height: 100%;
 
     .linha{
-        display: flex;
-        flex-direction: column;
+       color: red;
     }
 
     overflow-x: hidden;
@@ -102,17 +101,9 @@ const IconCss = css`
 export const StUser = styled(User)`
     ${IconCss}
 `
-
-
-
 export const StUpload = styled(Upload)`
     ${IconCss}
 `
-
-export const StDashboard = styled(Dashboard)`
-    ${IconCss}
-`
-
 export const StVr = styled(BadgeVrFill)`
     ${IconCss}
 `
@@ -125,7 +116,7 @@ export const StAdmin = styled(Admin)`
 export const StUsers = styled(Users)`
     ${IconCss}
 `
-export const StQuiz = styled(Quiz)`
+export const StDashboard = styled(Dashboard)`
     ${IconCss}
 `
 

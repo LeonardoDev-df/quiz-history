@@ -10,6 +10,7 @@ import {
 
 import AssetSpaceGirl from '../../assets/illustrations/space-girl.svg';
 import AssetLayingMan from '../../assets/illustrations/laying-man.svg';
+import AssetQuiz from '../../assets/quiz.svg';
 import Quizhistory from '../../assets/illustrations/quizan.svg';
 import AssetImageReality from '../../assets/illustrations/image-reality.svg';
 import AssetManUploading from '../../assets/illustrations/man-uploading.svg';
@@ -397,6 +398,17 @@ export const SectionOne = styled.div`
 
 export const LayingMan = styled(Object(AssetLayingMan))`
     width: 80%;
+    height: auto;
+
+    @media screen and (max-width: 540px) {
+        display: none;
+    }
+`;
+
+
+export const Quizback = styled(Object(AssetQuiz))`
+    background: 100%;
+    width:100%;
     height: auto;
 
     @media screen and (max-width: 540px) {

@@ -1,17 +1,21 @@
-import styled, { css } from 'styled-components'
+import styled, { css, createGlobalStyle } from 'styled-components'
 import { rgba, darken, shade } from 'polished'
 import { Form } from '@unform/web'
+
 
 import { Button } from '../../../components/Button'
 import EmblemOuro from '../../../assets/illustrations/ouro.svg';
 import EmblemPrata from '../../../assets/illustrations/prata.svg';
-import EmblemBronze from '../../../assets/illustrations/bronze.svg';
+import EmblemBronze from '../../../assets/illustrations/bronzeall.svg';
 import {
     Email,
     User,
     UserAlt,
     Eye,
+    PlusSquare,
     Trash,
+    Edit,
+    SearchSquare,
     Download,
     Share,
     Close,
@@ -35,8 +39,54 @@ const actButtonVariation = {
     `
 }
 
+export const Quiz = createGlobalStyle`
+  html {
+    height: 100%;
+  }
+
+  h1 {
+    font-family: Fascinate Inline;
+    background-image: linear-gradient(180deg, #fff, #87f1ff);
+    font-weight: 400;
+    background-size: 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+    filter: drop-shadow(2px 2px #0085a3);
+    font-size: 70px;
+    text-align: center;
+    margin: 20px;
+  }
+
+  #category{
+    width: 400px;
+    margin-left: 130px;
+  }
+
+  #apelido{
+    width: 400px;
+    margin-left: 260px;
+  }
+
+  body {
+    background-image: url("../../../assets/quiz.jpg");
+    background-size: cover;
+    margin: 0;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  * {
+    font-family: 'Catamaran', sans-serif;
+    box-sizing: border-box;
+  }
+`;
+
 export const EmblemGold = styled(Object(EmblemOuro))`
-    width: 30%;
+    width: 20%;
     height: auto;
 
     h3{
@@ -49,7 +99,7 @@ export const EmblemGold = styled(Object(EmblemOuro))`
 `;
 
 export const EmblemSilver = styled(Object(EmblemPrata))`
-    width: 30%;
+    width: 20%;
     height: auto;
 
     @media screen and (max-width: 540px) {
@@ -58,7 +108,7 @@ export const EmblemSilver = styled(Object(EmblemPrata))`
 `;
 
 export const EmblemBronzi = styled(Object(EmblemBronze))`
-    width: 30%;
+    width: 20%;
     height: auto;
 
     @media screen and (max-width: 540px) {
@@ -71,6 +121,29 @@ export const Container = styled.div`
     height: 100%;
     display: block;
     overflow: auto;
+
+
+    background: ${props => props.theme.colors.background};
+    padding: 2.4rem;
+    /* overflow: auto; */
+
+    strong, h1, h2, h3 {
+        color: ${props => props.theme.colors.title};
+    }
+`
+
+export const ContainerQuiz = styled.div`
+    height: 100%;
+    display: block;
+    overflow: auto;
+
+    h2{
+        text-align: center;
+        padding-bottom: 15px;
+        font-family: Fascinate Inline;
+        background-image: linear-gradient(180deg, #fff, #87f1ff);
+        font-weight: 400;
+    }
 
     background: ${props => props.theme.colors.background};
     padding: 2.4rem;
@@ -92,6 +165,16 @@ export const Paper = styled.div`
     position: relative;
     /* box-shadow: 0px 0px 50px 18px rgba(0,0,0,0.1); */
 
+    h3{
+        margin-left: -10px;
+    }
+
+    .pontos{
+        display: flex;
+        justify-content: space-around;
+        padding-bottom: 10px;
+        padding-top: 25px;
+      }
 
     .msg{
         text-align: center;
@@ -106,6 +189,219 @@ export const Paper = styled.div`
     & + div {
         margin-top: 3.2rem;
     }
+`
+
+export const PaperQuiz = styled.div`
+    background: ${props => props.theme.colors.paper};
+    width: min(964px, 90%);
+    height: fit-content;
+    border-radius: 8px;
+    position: relative;
+    /* box-shadow: 0px 0px 50px 18px rgba(0,0,0,0.1); */
+
+
+    .msg{
+        text-align: center;
+    }
+    .emblem{
+        text-align: center;
+    }
+    padding: 2.4rem;
+    margin: auto;
+    /* margin-top: 4rem; */
+
+    & + div {
+        margin-top: 3.2rem;
+    }
+
+    .trash{
+        display: flex;
+        background-color: red;
+    }
+
+  h1 {
+    font-family: Fascinate Inline;
+    background-image: linear-gradient(180deg, #fff, #87f1ff);
+    font-weight: 400;
+    background-size: 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+    filter: drop-shadow(2px 2px #0085a3);
+    font-size: 60px;
+    text-align: center;
+    margin: 20px;
+  }
+
+  hr{
+    borde-color: black;
+  }
+
+  p{
+    color: black;
+  }
+
+  h3{
+    padding-block-start: 20px;
+    text-align: center;
+    font-size: 19px;
+    font-weight: 400;
+  }
+
+  .borda{
+    border: 10px solid black;
+  }
+
+  .ponto{
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 40px;
+    padding-block-start: 20px;
+  }
+
+  .rank{
+    text-align: center;
+  }
+
+  p{
+    display: flex;
+  }
+
+  #category{
+    width: 400px;
+    margin-left: 130px;
+  }
+
+  #apelido{
+    width: 400px;
+    margin-left: 260px;
+  }
+
+  body {
+    background-image: url("../../../assets/quiz.jpg");
+    background-size: cover;
+    margin: 0;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  * {
+    font-family: 'Catamaran', sans-serif;
+    box-sizing: border-box;
+  }
+`
+
+export const PaperCadastrarQuiz = styled.div`
+    background: ${props => props.theme.colors.paper};
+    width: min(964px, 90%);
+    height: fit-content;
+    border-radius: 8px;
+
+    .buto{
+        display: flex;
+        margin-top: -20px;
+        justify-content: space-around;
+    }
+
+    position: relative;
+    /* box-shadow: 0px 0px 50px 18px rgba(0,0,0,0.1); */
+
+
+    .msg{
+        text-align: center;
+    }
+    .emblem{
+        text-align: center;
+    }
+    padding: 2.4rem;
+    margin: auto;
+    /* margin-top: 4rem; */
+
+    & + div {
+        margin-top: 3.2rem;
+    }
+
+    .trash{
+        display: flex;
+        background-color: red;
+    }
+
+  h1 {
+    font-family: Fascinate Inline;
+    background-image: linear-gradient(180deg, #fff, #87f1ff);
+    font-weight: 400;
+    background-size: 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+    filter: drop-shadow(2px 2px #0085a3);
+    font-size: 60px;
+    text-align: center;
+    margin: 20px;
+  }
+
+  hr{
+    borde-color: black;
+  }
+
+  p{
+    color: black;
+  }
+
+  h3{
+    padding-block-start: 20px;
+    text-align: center;
+    font-size: 19px;
+    font-weight: 400;
+  }
+
+  .borda{
+    border: 10px solid black;
+  }
+
+  .ponto{
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 40px;
+    padding-block-start: 20px;
+  }
+
+  .rank{
+    text-align: center;
+  }
+
+  p{
+    display: flex;
+  }
+
+  #category{
+    width: 400px;
+    margin-left: 130px;
+  }
+
+  #apelido{
+    width: 400px;
+    margin-left: 260px;
+  }
+
+  body {
+    background-image: url("../../../assets/quiz.jpg");
+    background-size: cover;
+    margin: 0;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  * {
+    font-family: 'Catamaran', sans-serif;
+    box-sizing: border-box;
+  }
 `
 
 export const PseudoInput = styled.div`
@@ -196,9 +492,44 @@ export const StForm = styled(Form)`
     }
 `
 
+export const StFormQuiz = styled(Form)`
+
+
+    & > fieldset {
+
+        h3 {
+            margin-bottom: .8rem;
+            font-weight: bold;
+            margin-left: 35px;
+            padding: 15px;
+            text-align: left;
+        }
+
+
+        h2{
+            text-align: center;
+        }
+
+        + fieldset {
+            margin-top: 1.6rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: .4rem;
+        }
+    }
+`
+
 export const FormGroup = styled.div<{ mult?: boolean }>`
     + div {
         margin-top: 1.2rem;
+    }
+
+    .sell{
+        margin-left: -170px;
+        width: 25px;
+        border: 5px solid red;
     }
 
     label {
@@ -211,6 +542,104 @@ export const FormGroup = styled.div<{ mult?: boolean }>`
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
         grid-gap: 2rem;
+
+        @media screen and (max-width: 490px) {
+            grid-template-columns: 1fr;
+            grid-gap: .8rem;
+        }
+    `}
+
+`
+
+export const FormQuiz = styled.div<{ mult?: boolean }>`
+
+    .quest{
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .Cast{
+        display: flex;
+        justify-content: space-around;
+    }
+    .titu{
+        width: 300px;
+    }
+
+    .Cadas{
+        width: 300px;
+    }
+    .Cad{
+        width: 200px;
+    }
+    .Cadi{
+        width: 200px;
+        margin-left: -70px;
+    }
+    .add{
+        margin-top: -0.4rem;
+        justify-content: center;
+    }
+
+    .addQuiz{
+        margin-top: -0.4rem;
+        justify-content: center;
+    }
+
+    .mais{
+        margin-left: 40px;
+        cursor: pointer;
+        transition-duration: 0.4s;
+    }
+
+    .mais:hover{
+        color: #87ff;
+    }
+    .maisQuiz{
+        margin-left: 25px;
+        cursor: pointer;
+        transition-duration: 0.4s;
+    }
+
+    .pesq{
+        margin-left: 10px;
+        cursor: pointer;
+        transition-duration: 0.4s;
+    }
+
+    .pesq:hover{
+        color: #87ff;
+    }
+
+    .edit{
+        margin-left: -8px;
+        cursor: pointer;
+        transition-duration: 0.4s;
+    }
+
+    .edit:hover{
+        color: #87ff;
+    }
+
+    .maisQuiz:hover{
+        color: #87ff;
+    }
+    + div {
+        margin-top: 1rem;
+
+    }
+
+    label {
+        display: block;
+        margin-bottom: .4rem;
+    }
+
+
+    ${props => props.mult && css`
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
+        grid-gap: 2rem;
+
 
         @media screen and (max-width: 490px) {
             grid-template-columns: 1fr;
@@ -251,12 +680,37 @@ export const FormInputContainer = styled.div<{ gridColumn?: string }>`
     .flex-container{
         display: flex;
         justify-content: space-evenly;
-        padding-top: 10px;
+        padding-top: 30px;
+
+    }
+
+
+
+
+    .sepi{
+
+        margin-left:-400px;
+    }
+
+    .vtt{
+       text-align:left;
+    }
+
+    @media screen and (max-width: 490px) {
+        grid-column: auto;
+    }
+`
+
+export const FormInputContainerQuiz = styled.div<{ gridColumn?: string }>`
+    grid-column: ${props => props.gridColumn ? props.gridColumn : 'auto'};
+
+    .flex-container{
+        display: flex;
 
     }
 
     .vtt{
-       text-align:center;
+       text-align:left;
     }
 
     @media screen and (max-width: 490px) {
@@ -386,18 +840,38 @@ export const StEye = styled(Eye)`
     width: 2rem;
     height: 2rem;
 `
+
+export const StAdd = styled(PlusSquare)`
+    width: 6rem;
+    height: 5rem;
+
+`
+
 export const StTrash = styled(Trash)`
     width: 2rem;
     height: 2rem;
 `
-export const StTrashEmble = styled(Trash)`
-    width: 5rem;
+
+export const StEdit = styled(Edit)`
+    width: 6rem;
     height: 5rem;
+`
+export const StSearch = styled(SearchSquare)`
+    width: 6rem;
+    height: 5rem;
+`
+
+
+
+export const StTrashEmble = styled(Trash)`
+    width: 3.5rem;
+    height: 4rem;
     display: block;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 10px;
     cursor: pointer;
+    padding-top: 0px;
 `
 
 export const StatusFlag = styled.div<{

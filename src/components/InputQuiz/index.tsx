@@ -1,31 +1,32 @@
 import {
-    useRef,
-    useState,
-    useEffect,
+    FocusEvent,
     InputHTMLAttributes,
-    ChangeEvent
+    useEffect,
+    useRef,
+    useState
 } from 'react'
-import { ReactDatePickerProps } from 'react-datepicker'
-
 import { useField } from '@unform/core'
 
-import { Container, Error, AlertIcon } from './styles'
-
-interface DatePickerProps extends Omit<ReactDatePickerProps, 'onChange'> {
-    name: string
-    Icon: string
-}
+import { Container, CheckIcon, Error, AlertIcon } from './styles'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     name: string
-    Icon: string
+    Icon?: string
+    themeType?: 'light' | 'dark'
+    onAdditionalBlur?(e: FocusEvent): any
 }
 
-export function CustomDatePicker({ name, Icon, ...rest }: InputProps) {
+export function InputQuiz({
+    name,
+    Icon,
+    themeType = 'dark',
+    onAdditionalBlur,
+    ...rest
+}: InputProps) {
     const [isFocused, setIsFocused] = useState(false)
     const [isFilled, setIsFilled] = useState(false)
 
-    const datepickerRef = useRef(null)
+    const inputRef = useRef<HTMLInputElement>()
 
     const {
         registerField,
@@ -35,58 +36,56 @@ export function CustomDatePicker({ name, Icon, ...rest }: InputProps) {
         clearError
     } = useField(name)
 
-    const [date, setDate] = useState<Date>(defaultValue || null)
-
     const handleInputFocus = () => setIsFocused(true)
-    function handleInputBlur() {
+    function handleInputBlur(e: FocusEvent<HTMLInputElement>) {
         setIsFocused(false)
 
-        setIsFilled(!!datepickerRef.current)
+        setIsFilled(!!inputRef.current.value)
         clearError()
-    }
-
-    function handleDateChange(event: ChangeEvent<HTMLInputElement>) {
-        const eventDate = new Date(event.target.value)
-
-        eventDate.setDate(eventDate.getDate() + 1)
-
-        setDate(eventDate)
+        if (onAdditionalBlur) {
+            onAdditionalBlur(e)
+        }
     }
 
     useEffect(() => {
         registerField({
             name: fieldName,
-            ref: datepickerRef,
+            ref: inputRef,
             getValue: ref => ref.current.value,
             setValue: (ref, value) => {
                 ref.current.value = value
             }
+            // clearValue: ref => {
+            //     ref.current.value = ''
+            // }
         })
-    }, [fieldName, registerField])
+    }, [registerField, fieldName])
 
     return (
         <Container
             isFocused={isFocused}
             isFilled={isFilled}
             isErrored={!!error}
+            themeType={themeType}
         >
-            {/* <button> */}
-            <Icon />
-            {/* </button> */}
-
+            {Icon && (
+                <div>
+                    <Icon />
+                </div>
+            )}
             <input
-                type="date"
-                ref={datepickerRef}
-                // selected={date}
-                // value={date}
-                onChange={handleDateChange}
+                ref={inputRef}
+                defaultValue={defaultValue}
                 onFocus={handleInputFocus}
                 onBlur={handleInputBlur}
-                placeholder="dd/mm/yyyy"
                 {...rest}
             />
 
-            <p>{date ? date.toLocaleDateString('pt-BR') : 'dd/mm/aaaa'}</p>
+            {/* <CheckIcon
+                isFocused={isFocused}
+                isFilled={isFilled}
+                isErrored={!!error}
+            /> */}
 
             {error && (
                 <Error title={error}>

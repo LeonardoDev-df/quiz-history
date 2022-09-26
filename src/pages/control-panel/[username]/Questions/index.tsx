@@ -17,14 +17,12 @@ import axios from 'axios'
 import {
     ContainerQuiz,
     StFormQuiz,
-    StAdd,
-    StEdit,
-    StSearch,
     PaperCadastrarQuiz,
     FormGroup,
     FormQuiz,
     StButton,
     Copy,
+    StAdd,
     StForm,
     FormInputContainer,
     FormInputContainerQuiz
@@ -257,15 +255,16 @@ function Upload({ UFOptions }) {
 
 
     const optionsCategory = [
-        { value: 'Sítio', label: 'Sítio' },
-        { value: 'Monumento', label: 'Monumento' },
-        { value: 'Museu', label: 'Museu' }
-      ]
-    const optionsDificulty = [
         { value: 'Catedral', label: 'Catedral' },
         { value: 'Catetinho', label: 'Catetinho' },
         { value: 'Museu Nacional', label: 'Museu Nacional' }
       ]
+    const optionsDificulty = [
+        { value: 'Facil', label: 'Fácil' },
+        { value: 'Medio', label: 'Médio' },
+        { value: 'Dificil', label: 'Difícil' }
+      ]
+
 
       const addInputButton = (e) => {
         e.preventDefault()
@@ -277,31 +276,19 @@ function Upload({ UFOptions }) {
             <Head title="Upload 3D | RV History" />
 
             <PaperCadastrarQuiz ref={divRef}>
-                <h2>Quizzes</h2>
+                <h2>Cadastrar Questões</h2>
                 <StFormQuiz ref={formRef} onSubmit={handleFormSubmit}>
 
                     <fieldset>
-                    <h3>Quiz Cadastrados:</h3>
+                    <h3>Informações Quiz:</h3>
                         <FormQuiz mult={true}>
 
-                        <div className='quest'>
-
-                                <div className='titu'>
-                                    <label htmlFor="city">Selecione a categoria</label>
-
-                                    <Select
-                                        options={optionsCategory}
-                                        name="city"
-                                        id="city"
-                                        instanceId="city"
-                                        placeholder="Selecione..."
-                                    />
-                                </div>
+                            <div className='quest'>
                                 <div className='titu'>
                                     <label htmlFor="uf">Selecione o Título do Quiz</label>
 
                                     <Select
-                                        options={optionsDificulty}
+                                        options={optionsCategory}
                                         name="uf"
                                         id="uf"
                                         instanceId="uf"
@@ -311,22 +298,97 @@ function Upload({ UFOptions }) {
                                     />
                                 </div>
 
+                                <div className='titu'>
+                                    <label htmlFor="city">Selecione a dificuldade</label>
 
-
-
+                                    <Select
+                                        options={optionsDificulty}
+                                        name="city"
+                                        id="city"
+                                        instanceId="city"
+                                        placeholder="Selecione..."
+                                    />
+                                </div>
 
                                 <div className='add'>
-                                <label htmlFor="city">Editar</label>
-                                <div className='edit'>
-                                <StEdit
-                                 onClick={addInputButton}/>
+                                <label htmlFor="city">Adicionar Questões</label>
+                                <div className='mais'>
+                                <StAdd
+                                    onClick={addInputButton}
+                                />
                                 </div>
 
                                 </div>
                             </div>
 
+
                         </FormQuiz>
+
                     </fieldset>
+
+                </StFormQuiz>
+                <Loading isVisible={isLoading} />
+            </PaperCadastrarQuiz>
+
+            <PaperCadastrarQuiz ref={divRef}>
+
+                <StFormQuiz ref={formRef} onSubmit={handleFormSubmit}>
+
+                    <fieldset>
+                    <h3>Questões do Quiz:</h3>
+
+                        <FormGroup mult={true}>
+
+                            <FormInputContainer gridColumn="1 / 4">
+
+                            <label className='vtt'>Informe qual será a Pergunta</label>
+                            <Input name="complement" id="complement" />
+
+                                <div className='flex-container'>
+                                    <input type="radio" className='sell' value="Vdd" name="gender" />
+                                    <div  className='sepi'>
+                                    < FormInputContainerQuiz gridColumn="  1/ 4">
+                                     <InputQuiz name="complement" id="complement" />
+                                    </ FormInputContainerQuiz>
+                                    </div>
+                                </div>
+
+                                <div className='flex-container'>
+                                    <input type="radio" className='sell' value="Vdd" name="gender" />
+                                    <div  className='sepi'>
+                                    < FormInputContainerQuiz gridColumn="  1/ 4">
+                                     <InputQuiz name="complement" id="complement" />
+                                    </ FormInputContainerQuiz>
+                                    </div>
+                                </div>
+
+                                <div className='flex-container'>
+                                    <input type="radio" className='sell' value="Vdd" name="gender" />
+                                    <div  className='sepi'>
+                                    < FormInputContainerQuiz gridColumn="  1/ 4">
+                                     <InputQuiz name="complement" id="complement" />
+                                    </ FormInputContainerQuiz>
+                                    </div>
+                                </div>
+
+                                <div className='flex-container'>
+                                    <input type="radio" className='sell' value="Vdd" name="gender" />
+                                    <div  className='sepi'>
+                                    < FormInputContainerQuiz gridColumn="  1/ 4">
+                                     <InputQuiz name="complement" id="complement" />
+                                    </ FormInputContainerQuiz>
+                                    </div>
+                                </div>
+
+                            </FormInputContainer>
+
+                        </FormGroup>
+
+
+                    </fieldset>
+
+
+
 
                 </StFormQuiz>
                 <Loading isVisible={isLoading} />
@@ -383,35 +445,41 @@ function Upload({ UFOptions }) {
                                     </ FormInputContainerQuiz>
                                     </div>
                                 </div>
+
                             </FormInputContainer>
+
                         </FormGroup>
+
+
                     </fieldset>
+
+
+
+
                 </StFormQuiz>
                 <Loading isVisible={isLoading} />
                 </PaperCadastrarQuiz>
             ))}
 
+            <PaperCadastrarQuiz ref={divRef}>
 
+                    <div  className='buto'>
+                        <div>
+                        <StButton type="submit" toRight>
+                        CANCELAR
+                        </StButton>
+                        </div>
+                        <div>
+                        <StButton type="submit" toRight>
+                        CADASTRAR
+                        </StButton>
+                        </div>
 
-
-                <PaperCadastrarQuiz ref={divRef}>
-
-                <div  className='buto'>
-                    <div>
-                    <StButton type="submit" toRight>
-                    CANCELAR
-                    </StButton>
                     </div>
-                    <div>
-                    <StButton type="submit" toRight>
-                    SALVAR
-                    </StButton>
-                    </div>
 
-                </div>
 
                 <Loading isVisible={isLoading} />
-                </PaperCadastrarQuiz>
+            </PaperCadastrarQuiz>
 
             <Copy>&copy; 2021 RVHistory. All right reserved.</Copy>
         </ContainerQuiz>

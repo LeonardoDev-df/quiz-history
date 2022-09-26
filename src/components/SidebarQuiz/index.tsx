@@ -4,7 +4,9 @@ import { useRouter } from 'next/router'
 import { ThemeContext } from 'styled-components'
 import { shade, lighten } from 'polished'
 import Switch from 'react-switch'
-
+import * as RiIcons from 'react-icons/ri'
+import * as IoIcons from 'react-icons/io'
+import * as AiIcons from 'react-icons/ai'
 
 import { AuthContext } from '../../contexts/auth'
 import {
@@ -12,11 +14,10 @@ import {
     StUser,
     StUpload,
     StVr,
-    StDashboard,
     StAdmin,
     StUsers,
     StLogOut,
-    StQuiz,
+    StDashboard,
     Item,
     Divider
 } from './styles'
@@ -30,81 +31,31 @@ type SidebarProps = {
 const userTabs = [
     {
         id: 1,
-        icon: StUser,
-        title: 'Perfil',
-        urlPath: 'profile',
-        isActive: false
-    },
-    {
-        id: 2,
-        icon: StUpload,
-        title: 'Upload 3D',
-        urlPath: 'upload',
-        isActive: false
-    },
-    {
-        id: 3,
-        icon: StVr,
-        title: 'Meus uploads',
-        barra: '______________________',
-        urlPath: 'my-uploads',
-        isActive: false
-    }
-    ,
-    {
-        id: 7,
-        icon: StQuiz,
-        title: ' Cadastrar Quiz',
-        urlPath: 'Quiz',
+        icon: StDashboard,
+        title: 'Quizzes',
+        urlPath: 'Quizzes',
         isActive: false
     },
     {
         id: 8,
-        icon: StQuiz,
-        title: ' Cadastrar Questões',
-        urlPath: 'Questions',
+        icon: StDashboard,
+        title: 'Ranking',
+        urlPath: 'Ranking',
         isActive: false
     },
     {
         id: 9,
-        icon: StQuiz,
-        title: 'Quizzes',
-        urlPath: 'ListQuiz',
-        isActive: false
-    },
-    {
-        id: 10,
-        icon: StQuiz,
+        icon: StDashboard,
         title: 'Emblemas',
-        barra: '______________________',
-        urlPath: 'emblems',
+        urlPath: 'emblemsQuiz',
         isActive: false
     }
 ]
 
 const adminTabs = [
-    {
-        id: 6,
-        icon: StDashboard,
-        title: 'Painel Administrativo',
-        urlPath: 'admin/dashboard',
-        isActive: false
-    },
+
     ...userTabs,
-    {
-        id: 4,
-        icon: StUsers,
-        title: 'Usuários',
-        urlPath: 'admin/users',
-        isActive: false
-    },
-    {
-        id: 5,
-        icon: StAdmin,
-        title: 'Administradores',
-        urlPath: 'admin/admins',
-        isActive: false
-    }
+
 ]
 
 export const Sidebar = ({ changeTheme, showSidebar }: SidebarProps) => {
@@ -175,23 +126,16 @@ export const Sidebar = ({ changeTheme, showSidebar }: SidebarProps) => {
 
     return (
         <Container showSidebar={showSidebar}>
-            {items.map(({ id, title, barra, icon: Icon, isActive, urlPath}) => (
+            {items.map(({ id, title, icon: Icon, isActive, urlPath}) => (
                 <Item
                     key={id}
                     active={isActive}
                     onClick={() => handleActiveItemChange(id, urlPath)}
                 >
                     <Icon />
-
-                    <div className='linha'>
-                        <span>{title}</span>
-                        <span>{barra}</span>
-                    </div>
-
-
-
+                    <span>{title}</span>
                 </Item>
-
+                
             ))}
 
             <Loading isVisible={isLoading} type="no-overlay" />
@@ -233,10 +177,7 @@ export const Sidebar = ({ changeTheme, showSidebar }: SidebarProps) => {
                 </Item>
             </label>
 
-            <Item onClick={logOut}>
-                <StLogOut />
-                <span>Deslogar</span>
-            </Item>
+
         </Container>
     )
 }
