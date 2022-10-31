@@ -169,6 +169,13 @@ export const Paper = styled.div`
         margin-left: -10px;
     }
 
+    .butolist{
+        display: flex;
+
+        justify-content: space-around;
+        padding-top: 15px;
+    }
+
     .pontos{
         display: flex;
         justify-content: space-around;
@@ -230,9 +237,10 @@ export const PaperQuiz = styled.div`
     -moz-background-clip: text;
     -moz-text-fill-color: transparent;
     filter: drop-shadow(2px 2px #0085a3);
-    font-size: 60px;
+    font-size: 50px;
     text-align: center;
-    margin: 20px;
+    margin: 5px;
+    padding-top: -10px;
   }
 
   hr{
@@ -251,14 +259,11 @@ export const PaperQuiz = styled.div`
   }
 
   .borda{
-    border: 10px solid black;
+    border: 3px solid #87f1ff ;
   }
 
-  .ponto{
-    display: flex;
-    justify-content: space-between;
-    padding-inline: 40px;
-    padding-block-start: 20px;
+  .bordi{
+    border: none ;
   }
 
   .rank{
@@ -300,10 +305,70 @@ export const PaperCadastrarQuiz = styled.div`
     height: fit-content;
     border-radius: 8px;
 
+    .editar{
+        margin-left: -3px;
+    }
+
+    .Cast{
+        display: flex;
+    }
+
+    .addquest{
+        margin-left:-6px;
+    }
+
+    .addqui{
+
+    }
+
+    .edit{
+        cursor: pointer;
+        transition-duration: 0.4s;
+    }
+
+    .editpes{
+        cursor: pointer;
+        transition-duration: 0.4s;
+        margin-left:-115px;
+    }
+
+    .edit:hover{
+        color: #87ff;
+    }
+
+    .editpes:hover{
+        color: #87ff;
+    }
+    .organi{
+        display: flex;
+        justify-content: space-around;
+        padding-top: 30px;
+    }
+
+    .organiz{
+        padding-inline: 30px;
+        justify-content: space-around;
+        padding-top: 10px;
+    }
+
+    .organizi{
+        padding-inline: 30px;
+        justify-content: space-around;
+        padding-top: 10px;
+        display: flex;
+    }
+
     .buto{
         display: flex;
         margin-top: -20px;
         justify-content: space-around;
+    }
+
+    .butolist{
+        display: flex;
+
+        justify-content: space-around;
+        padding-top: 15px;
     }
 
     position: relative;
@@ -470,6 +535,11 @@ export const StButton = styled(Button) <{ toRight?: boolean }>`
 `
 
 export const StForm = styled(Form)`
+
+    .group{
+        display: flex;
+        justify-content: space-evenly;
+    }
     & > fieldset {
         h3 {
             margin-bottom: .8rem;
@@ -493,7 +563,24 @@ export const StForm = styled(Form)`
 `
 
 export const StFormQuiz = styled(Form)`
+    .pesquist{
+        margin-left: 350px;
+    }
 
+    .pep{
+        background-color: red;
+    }
+
+    .Cast{
+        display: flex;
+    }
+
+    .butolist{
+        display: flex;
+
+        justify-content: space-around;
+        padding-top: 15px;
+    }
 
     & > fieldset {
 
@@ -502,7 +589,7 @@ export const StFormQuiz = styled(Form)`
             font-weight: bold;
             margin-left: 35px;
             padding: 15px;
-            text-align: left;
+            text-align: center;
         }
 
 
@@ -524,6 +611,28 @@ export const StFormQuiz = styled(Form)`
 export const FormGroup = styled.div<{ mult?: boolean }>`
     + div {
         margin-top: 1.2rem;
+    }
+
+    .separ{
+        display: list-item;
+        padding-left: 70px;
+    }
+
+    .butolist{
+        display: flex;
+
+        justify-content: space-around;
+        padding-top: 15px;
+    }
+
+    .buttonadd{
+        display: block;
+        cursor: pointer;
+        transition-duration: 0.4s;
+    }
+
+    .buttonadd:hover{
+        color: #87ff;
     }
 
     .sell{
@@ -554,16 +663,104 @@ export const FormGroup = styled.div<{ mult?: boolean }>`
 export const FormQuiz = styled.div<{ mult?: boolean }>`
 
     .quest{
-        display: flex;
+
         justify-content: space-around;
     }
 
     .Cast{
-        display: flex;
+        diplay: flex;
+    }
+
+    .quist{
+        display:flex;
         justify-content: space-around;
     }
+
+    .campedit{
+        display:flex;
+    }
+
+    .editando{
+        background-color: red;
+        justify-items: left;
+    }
+
+    .editcate{
+        background-color: red;
+        justify-items: left;
+    }
+
+    .addqui{
+        font-weight: bold;
+        padding-top: 15px;
+        margin-left: -335px
+    }
+
+    .buttonadd{
+        display: block;
+        cursor: pointer;
+        transition-duration: 0.4s;
+    }
+
+    .buttonadd:hover{
+        color: #87ff;
+    }
+
+    .separ{
+        justify-items: left;
+        barckground-color: red;
+    }
+
+    .buttonaddicty{
+        font-weight: bold;
+       text-align:center;
+        margin-left: -135px
+    }
+
+    .buttonedit{
+        font-weight: bold;
+        padding-top: 15px;
+        margin-left: -35px
+    }
+
+    .addedi{
+        font-weight: bold;
+        padding-top: 15px;
+        margin-left: -400px
+    }
+
+
+    .pesqui{
+
+    }
+
+    .Cast{
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .Casti{
+        display: flex;
+        justify-content: space-evenly;
+        margin-left: 75px;
+    }
     .titu{
+        padding-bottom: 30px;
         width: 300px;
+    }
+
+    .pesqti{
+        padding-bottom: 20px;
+        width: 300px;
+        margin-left: 170px;
+        margin-top: 55px;
+    }
+
+
+
+    .pesqQuiz{
+        padding-bottom: 30px;
+        width: 400px;
     }
 
     .Cadas{
@@ -571,6 +768,7 @@ export const FormQuiz = styled.div<{ mult?: boolean }>`
     }
     .Cad{
         width: 200px;
+        margin-left: 70px;
     }
     .Cadi{
         width: 200px;
@@ -579,6 +777,23 @@ export const FormQuiz = styled.div<{ mult?: boolean }>`
     .add{
         margin-top: -0.4rem;
         justify-content: center;
+    }
+
+    .listadd{
+        display:flex;
+        justify-content: space-evenly;
+    }
+
+    .listedi{
+        display:flex;
+        justify-content: space-around;
+        padding-bottom: 10px;
+    }
+
+    .listaddi{
+        display:flex;
+        justify-content: space-around;
+        padding-bottom: 10px;
     }
 
     .addQuiz{
@@ -611,10 +826,21 @@ export const FormQuiz = styled.div<{ mult?: boolean }>`
         color: #87ff;
     }
 
+    .search{
+        padding-top: 10px;
+        margin-left: 100px;
+        cursor: pointer;
+        transition-duration: 0.4s;
+    }
+
     .edit{
         margin-left: -8px;
         cursor: pointer;
         transition-duration: 0.4s;
+    }
+
+    .search:hover{
+        color: #87ff;
     }
 
     .edit:hover{
@@ -861,7 +1087,16 @@ export const StSearch = styled(SearchSquare)`
     height: 5rem;
 `
 
-
+export const StTrashQuize = styled(Trash)`
+    width: 4rem;
+    height: 5rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    cursor: pointer;
+    padding-top: 0px;
+`
 
 export const StTrashEmble = styled(Trash)`
     width: 3.5rem;

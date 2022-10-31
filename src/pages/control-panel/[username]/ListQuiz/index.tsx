@@ -20,6 +20,8 @@ import {
     StAdd,
     StEdit,
     StSearch,
+    StTrashQuize,
+    Paper,
     PaperCadastrarQuiz,
     FormGroup,
     FormQuiz,
@@ -39,9 +41,11 @@ import { AUTH_TOKEN_KEY } from '../../../../contexts/auth'
 import { Loading } from '../../../../components/Loading'
 import { Select } from '../../../../components/SelectQuiz'
 import { useToast } from '../../../../hooks/use-toast'
-import { Input } from '../../../../components/Input'
 import { InputQuiz } from '../../../../components/InputQuiz'
+import { Input } from '../../../../components/Input'
+import { InputQuizpesq } from '../../../../components/InputQuizpesq'
 import Head from '../../../../infra/components/Head'
+import { AiOutlineReload } from 'react-icons/ai'
 
 interface CepResponse {
     cep: string
@@ -83,6 +87,8 @@ function Upload({ UFOptions }) {
     const [isLoading, setIsLoading] = useState(false)
     const [files, setFiles] = useState<FileList>()
     const [ quizes, setQuizes] = useState([])
+    const [ quest, setQuest] = useState([])
+    const [ QuizEdit, setQuizEdit] = useState([])
 
     const { colors } = useContext(ThemeContext)
     const { addToast } = useToast()
@@ -257,9 +263,10 @@ function Upload({ UFOptions }) {
 
 
     const optionsCategory = [
-        { value: 'Sítio', label: 'Sítio' },
+        { value: 'Sítio', label: 'Sítio Cultural' },
         { value: 'Monumento', label: 'Monumento' },
-        { value: 'Museu', label: 'Museu' }
+        { value: 'Museu', label: 'Museu' },
+        { value: 'Outros', label: 'Outros' }
       ]
     const optionsDificulty = [
         { value: 'Catedral', label: 'Catedral' },
@@ -271,20 +278,51 @@ function Upload({ UFOptions }) {
         e.preventDefault()
 
         setQuizes([...quizes, ""]);
-    };
+      };
+
+      const addQuestButton = (e) => {
+        e.preventDefault()
+
+        setQuest([...quest, ""]);
+      };
+
+      const addQuizEditButton = (e) => {
+        e.preventDefault()
+
+        setQuizEdit([...QuizEdit, ""]);
+
+        setShow((s) => !s)
+      };
+
+
+
+      { /* Apagar um campo */ }
+       const [show, setShow] = useState(true);
+
+       function refreshPage(){
+        window.location.reload();
+       }
+
+       function refreshPageafterSave(){
+        alert("Dados foram editados com sucesso!")
+        window.location.reload();
+       }
+
+
+
     return (
         <ContainerQuiz>
             <Head title="Upload 3D | RV History" />
 
             <PaperCadastrarQuiz ref={divRef}>
                 <h2>Quizzes</h2>
-                <StFormQuiz ref={formRef} onSubmit={handleFormSubmit}>
+                <StFormQuiz ref={formRef} onSubmit={handleFormSubmit} style={{ display: show ? "block" : "none" }}>
 
-                    <fieldset>
-                    <h3>Quiz Cadastrados:</h3>
+                    <fieldset >
+                    <h3></h3>
                         <FormQuiz mult={true}>
 
-                        <div className='quest'>
+                        <div className='quist' >
 
                                 <div className='titu'>
                                     <label htmlFor="city">Selecione a categoria</label>
@@ -297,36 +335,24 @@ function Upload({ UFOptions }) {
                                         placeholder="Selecione..."
                                     />
                                 </div>
-                                <div className='titu'>
-                                    <label htmlFor="uf">Selecione o Título do Quiz</label>
 
-                                    <Select
-                                        options={optionsDificulty}
-                                        name="uf"
-                                        id="uf"
-                                        instanceId="uf"
-                                        // isSearchable
-                                        onChange={''}
-                                        placeholder="Selecione..."
-                                    />
+                                <div  className='titu'>
+                                    <label htmlFor="city">Pesquisar</label>
+                                        < FormInputContainerQuiz gridColumn="  1/ 2">
+                                        <InputQuizpesq name="complement" id="complement" />
+                                        </ FormInputContainerQuiz>
                                 </div>
 
-
-
-
-
-                                <div className='add'>
-                                <label htmlFor="city">Editar</label>
-                                <div className='edit'>
-                                <StEdit
-                                 onClick={addInputButton}/>
-                                </div>
-
-                                </div>
-                            </div>
-
+                        </div>
                         </FormQuiz>
                     </fieldset>
+
+                    <div className='pesquist'>
+                        <StButton type="submit"
+                        onClick={addInputButton}>
+                        PESQUISAR
+                        </StButton>
+                    </div>
 
                 </StFormQuiz>
                 <Loading isVisible={isLoading} />
@@ -334,12 +360,446 @@ function Upload({ UFOptions }) {
 
             {quizes.map(quize => (
 
-                <PaperCadastrarQuiz ref={divRef}>
+                <PaperCadastrarQuiz ref={divRef} style={{ display: show ? "block" : "none" }}>
+
+                <StFormQuiz ref={formRef} onSubmit={handleFormSubmit}>
+
+                    <fieldset >
+                    <h3>Quizzes</h3>
+                    <FormQuiz mult={true}>
+
+                        <div>
+                        <div className='pe'>
+                                <label htmlFor="uf">Título</label>
+                                <Input name="complement" id="complement" value='Nacional' />
+                        </div>
+
+                        <div className='pe'>
+                                <label htmlFor="uf">Categoria</label>
+                                <Input name="complement" id="complement" value='Museu'/>
+                        </div>
+
+                        <div className='pes'>
+                                <label htmlFor="uf">Sítio Relacionado</label>
+                                <Input name="complement" id="complement" value='Museu Nacional' />
+                        </div>
+                        </div>
+
+
+                    <div className='organiz'>
+
+                            <div className='listedi'>
+                                    <div className='buttonadd'>
+                                        <StEdit
+                                        onClick={addQuizEditButton}
+                                        />
+                                    </div>
+
+                                    <div >
+                                        <label className='buttonaddicty' htmlFor="city">EDITAR QUIZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    </div>
+                            </div>
+
+                            <div className='listedi'>
+                                    <div className='buttonadd'>
+                                        <StTrashQuize
+
+                                        />
+                                    </div>
+
+                                    <div >
+                                        <label className='buttonaddicty' htmlFor="city">EXCLUIR QUIZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    </div>
+                            </div>
+                    </div>
+
+                    </FormQuiz>
+
+                    </fieldset>
+                </StFormQuiz>
+
+
+                <Loading isVisible={isLoading} />
+                </PaperCadastrarQuiz>
+
+            ))}
+
+
+
+            {QuizEdit.map(quizedit => (
+            <>
+
+            <PaperCadastrarQuiz ref={divRef}>
+
+            <StFormQuiz ref={formRef} onSubmit={handleFormSubmit}>
+
+                <fieldset>
+                <h3>Quizzes</h3>
+                <FormGroup mult={true}>
+
+                    <div>
+                            <div>
+                                <label htmlFor="province">Título</label>
+                                <Input name="province" id="province" value='Nacional' />
+                            </div>
+
+
+                            <div>
+                                <label htmlFor="uf">Categoria</label>
+
+                                <Select
+                                    options={optionsCategory}
+                                    name="uf"
+                                    id="uf"
+                                    instanceId="uf"
+                                    // isSearchable
+
+                                    placeholder="Selecione..."
+                                />
+                            </div>
+
+                            <div>
+                                <label htmlFor="city">Sítio Relecionado</label>
+
+                                <Select
+                                    options={optionsDificulty}
+                                    name="city"
+                                    id="city"
+                                    instanceId="city"
+                                    placeholder="Selecione..."
+                                />
+                            </div>
+                    </div>
+
+                    <div className='separ'>
+                         <div className='buttonadd'>
+                            <StAdd
+                            onClick={addQuestButton}
+                            />
+                            ADICIONAR QUESTÃO
+                        </div>
+
+                            <div>
+                                <StButton onClick={ refreshPage }>
+                                CANCELAR
+                                </StButton>
+                            </div>
+                            <div>
+                                <StButton onClick={ refreshPageafterSave }>
+                                SALVAR
+                                </StButton>
+                            </div>
+                    </div>
+
+
+
+
+                        </FormGroup>
+
+                </fieldset>
+            </StFormQuiz>
+
+
+            <Loading isVisible={isLoading} />
+            </PaperCadastrarQuiz>
+
+            <Paper >
+
+            <StFormQuiz ref={formRef} onSubmit={handleFormSubmit}>
+
+                <fieldset>
+                <h3>Questões</h3>
+
+                    <FormGroup mult={true}>
+
+                        <FormInputContainer gridColumn="1 / 4">
+
+                        <label className='vtt'>Informe qual será a Pergunta</label>
+                        <Input name="complement" id="complement" value="Qual ano de inaguração do Museu Nacional ? " />
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender" />
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement"  value="2000"/>
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender" />
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement" value="2006" />
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender" />
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement" value="1995" />
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender" />
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement"  value="2009"/>
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+                        </FormInputContainer>
+                    </FormGroup>
+                </fieldset>
+            </StFormQuiz>
+
+            <Loading isVisible={isLoading} />
+            </Paper>
+
+            <Paper >
+
+            <StFormQuiz ref={formRef} onSubmit={handleFormSubmit}>
+
+                <fieldset>
+                <h3>Questões</h3>
+
+                    <FormGroup mult={true}>
+
+                        <FormInputContainer gridColumn="1 / 4">
+
+                        <label className='vtt'>Informe qual será a Pergunta</label>
+                        <Input name="complement" id="complement"  value="Qual nome do arquiteto responsável pela Obra ?"/>
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender"  checked/>
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement"  value="Roberto Burle Marx"/>
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender" />
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement"  value="Lúcio Costa"/>
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender" />
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement"  value=" Oscar Niemeyer "/>
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender" />
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement" value="Rosa Grena Kliass"/>
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+                        </FormInputContainer>
+                    </FormGroup>
+                </fieldset>
+            </StFormQuiz>
+
+            <Loading isVisible={isLoading} />
+            </Paper>
+
+            <Paper >
+
+            <StFormQuiz ref={formRef} onSubmit={handleFormSubmit}>
+
+                <fieldset>
+                <h3>Questões</h3>
+
+                    <FormGroup mult={true}>
+
+                        <FormInputContainer gridColumn="1 / 4">
+
+                        <label className='vtt'>Informe qual será a Pergunta</label>
+                        <Input name="complement" id="complement"  value="Qual nome dado ao conjunto de Obras ao seu redor ?"/>
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender"  checked/>
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement" value="Complexo Cultural da República João Herculino" />
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender" />
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement" value="Centro cultural de Brasília"/>
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender" />
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement" value="Complexo cultural de Brasília"/>
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender" />
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement" value="Espaço da cultura nacional"/>
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+                        </FormInputContainer>
+                    </FormGroup>
+                </fieldset>
+            </StFormQuiz>
+
+            <Loading isVisible={isLoading} />
+            </Paper>
+
+            <Paper >
+
+            <StFormQuiz ref={formRef} onSubmit={handleFormSubmit}>
+
+                <fieldset>
+                <h3>Questões</h3>
+
+                    <FormGroup mult={true}>
+
+                        <FormInputContainer gridColumn="1 / 4">
+
+                        <label className='vtt'>Informe qual será a Pergunta</label>
+                        <Input name="complement" id="complement" />
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender" />
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement" />
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender"  checked/>
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement" />
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender" />
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement" />
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender" />
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement" />
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+                        </FormInputContainer>
+                    </FormGroup>
+                </fieldset>
+            </StFormQuiz>
+
+            <Loading isVisible={isLoading} />
+            </Paper>
+
+            <Paper >
+
+            <StFormQuiz ref={formRef} onSubmit={handleFormSubmit}>
+
+                <fieldset>
+                <h3>Questões</h3>
+
+                    <FormGroup mult={true}>
+
+                        <FormInputContainer gridColumn="1 / 4">
+
+                        <label className='vtt'>Informe qual será a Pergunta</label>
+                        <Input name="complement" id="complement" />
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender" />
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement" />
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender" checked/>
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement" />
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender" />
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement" />
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender" />
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement" />
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+                        </FormInputContainer>
+                    </FormGroup>
+                </fieldset>
+            </StFormQuiz>
+
+            <Loading isVisible={isLoading} />
+            </Paper>
+
+            </>
+
+            ))}
+
+            {quest.map(quize => (
+
+                <Paper ref={divRef}>
 
                 <StFormQuiz ref={formRef} onSubmit={handleFormSubmit}>
 
                     <fieldset>
-                    <h3>Questões do Quiz:</h3>
+                    <h3>Questões</h3>
 
                         <FormGroup mult={true}>
 
@@ -387,32 +847,34 @@ function Upload({ UFOptions }) {
                         </FormGroup>
                     </fieldset>
                 </StFormQuiz>
+
+
+                <div  className='butolist'>
+                        <div>
+                        <StButton type="submit" toRight>
+                        CANCELAR
+                        </StButton>
+                        </div>
+                        <div>
+                        <StButton type="submit" toRight>
+                        CADASTRAR
+                        </StButton>
+                        </div>
+
+                    </div>
+
+
                 <Loading isVisible={isLoading} />
-                </PaperCadastrarQuiz>
+                </Paper>
             ))}
 
+            { /* Apagar um campo  :)
 
-
-
-                <PaperCadastrarQuiz ref={divRef}>
-
-                <div  className='buto'>
-                    <div>
-                    <StButton type="submit" toRight>
-                    CANCELAR
-                    </StButton>
-                    </div>
-                    <div>
-                    <StButton type="submit" toRight>
-                    SALVAR
-                    </StButton>
-                    </div>
-
-                </div>
-
-                <Loading isVisible={isLoading} />
-                </PaperCadastrarQuiz>
-
+            <div>
+            <button onClick={() => setShow((s) => !s)}>toggle</button>
+            <div style={{ display: show ? "block" : "none" }}>hello</div>
+            </div>
+           */}
             <Copy>&copy; 2021 RVHistory. All right reserved.</Copy>
         </ContainerQuiz>
     )
@@ -434,10 +896,6 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
             }
         }
     }
-
-
-
-
     return {
         props: {
 

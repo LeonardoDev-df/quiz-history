@@ -33,7 +33,7 @@ export const SidebarLayout: React.FC<{ changeTheme(): void }> = ({
                         </button>
 
                             <Logo />
-                      
+
                     </Navbar>
                     <Sidebar
                         changeTheme={changeTheme}

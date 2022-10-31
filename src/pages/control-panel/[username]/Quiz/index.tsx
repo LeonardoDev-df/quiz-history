@@ -14,6 +14,7 @@ import { parseCookies } from 'nookies'
 import * as Yup from 'yup'
 import axios from 'axios'
 
+
 import {
     ContainerQuiz,
     StFormQuiz,
@@ -44,6 +45,8 @@ import { Quiz } from '../../../../styles/Icons'
 
 interface CepResponse {
     cep: string
+    categoria: string
+    titulo: string
     logradouro: string
     complemento: string
     bairro: string
@@ -66,13 +69,9 @@ type OptionProps = readonly (OptionTypeBase | GroupTypeBase<OptionTypeBase>)[]
 
 type FormSiteData = {
     siteName: string
-    zipCode: string
-    streetAddress: string
-    number: string
-    complement: string
-    province: string
-    city: string
-    uf: string
+    title: string
+    category: string
+
 }
 
 function Upload({ UFOptions }) {
@@ -83,6 +82,7 @@ function Upload({ UFOptions }) {
     const [files, setFiles] = useState<FileList>()
     const [ quizes, setQuizes] = useState([])
 
+
     const { colors } = useContext(ThemeContext)
     const { addToast } = useToast()
 
@@ -90,14 +90,9 @@ function Upload({ UFOptions }) {
     const formRef = useRef<FormHandles>(null)
 
     const schema = Yup.object({
-        siteName: Yup.string().required('Nome obrigatório'),
-        zipCode: Yup.string().required('CEP obrigatório'),
-        streetAddress: Yup.string().required('Endereço obrigatório'),
-        number: Yup.string().required('Número obrigatório'),
-        complement: Yup.string(),
-        province: Yup.string().required('Bairro obrigatório'),
-        city: Yup.string().required('Cidade obrigatório'),
-        uf: Yup.string().required('UF obrigatório')
+        siteName: Yup.string().required(' obrigatório'),
+        title: Yup.string().required(' obrigatório'),
+        category: Yup.string().required(' obrigatório'),
     })
 
     const isAdvancedUpload = () => {
@@ -124,6 +119,8 @@ function Upload({ UFOptions }) {
     const handleFormSubmit: SubmitHandler<FormSiteData> = useCallback(
         async (data, { reset }) => {
             setIsLoading(true)
+
+
             try {
                 reset()
 
@@ -149,14 +146,10 @@ function Upload({ UFOptions }) {
                 // formData.append('image', image)
                 // formData.append('imageData', JSON.stringify(imageData))
                 const {
-                    city,
-                    complement,
+
                     siteName,
-                    streetAddress,
-                    province,
-                    number,
-                    uf,
-                    zipCode
+                    category,
+                    title
                 } = data
 
                 const siteData = {
@@ -164,14 +157,9 @@ function Upload({ UFOptions }) {
                     name: siteName,
                     size: image.size,
                     image,
-                    address: {
-                        city,
-                        complement,
-                        streetAddress,
-                        province,
-                        number,
-                        uf,
-                        zipCode
+                    quiz: {
+                        category,
+                        title
                     }
                 }
                 // TODO: API connection
@@ -201,6 +189,12 @@ function Upload({ UFOptions }) {
         async ({ target: { value } }: FocusEvent<HTMLInputElement>) => {
             const cep = value.replace(/\D/g, '')
 
+            const optionsCategory = [
+                { value: 'Sítio', label: 'Sítio' },
+                { value: 'Monumento', label: 'Monumento' },
+                { value: 'Museu', label: 'Museu' }
+              ]
+
             if (cep != '') {
                 const validacep = /^[0-9]{8}$/
 
@@ -216,7 +210,7 @@ function Upload({ UFOptions }) {
 
                     if (response) {
                         const {
-                            data: { logradouro, bairro, localidade, uf }
+                            data: { logradouro, bairro, localidade, category }
                         } = response
 
                         formRef.current.setFieldValue(
@@ -224,9 +218,9 @@ function Upload({ UFOptions }) {
                             logradouro
                         )
                         formRef.current.setFieldValue('province', bairro)
-                        formRef.current.setFieldValue('uf', uf)
-                        const inUfRef = formRef.current.getFieldRef('uf')
-                        inUfRef.select.selectOption({ label: uf, value: uf })
+                        formRef.current.setFieldValue('category', category)
+                        const inCategoryRef = formRef.current.getFieldRef('category')
+                        inCategoryRef.select.selectOption({ label: category, value: category })
 
                         const inCityRef = formRef.current.getFieldRef('city')
                         inCityRef.select.selectOption({
@@ -253,13 +247,14 @@ function Upload({ UFOptions }) {
         },
         []
     )
-
-
     const optionsCategory = [
         { value: 'Sítio', label: 'Sítio' },
         { value: 'Monumento', label: 'Monumento' },
-        { value: 'Museu', label: 'Museu' }
+        { value: 'Museu', label: 'Museu' },
+        { value: 'Outros', label: 'Outros' }
       ]
+
+
     const optionsDificulty = [
         { value: 'Facil', label: 'Fácil' },
         { value: 'Medio', label: 'Médio' },
@@ -280,7 +275,7 @@ function Upload({ UFOptions }) {
                 <StFormQuiz ref={formRef} onSubmit={handleFormSubmit}>
 
                     <fieldset>
-                    <h3>Informações Quiz:</h3>
+                    <h3></h3>
                         <FormQuiz mult={true}>
 
                         <div className='Cast'>
@@ -289,7 +284,7 @@ function Upload({ UFOptions }) {
 
                                 <Select
                                     options={optionsCategory}
-                                    name="uf"
+                                    name="category"
                                     id="uf"
                                     instanceId="uf"
                                     // isSearchable
@@ -303,7 +298,7 @@ function Upload({ UFOptions }) {
                                 <FormGroup mult={true}>
                                 <FormInputContainer gridColumn=" 1 / 1">
                                     <label htmlFor="complement">Título do Quiz</label>
-                                    <Input name="complement" id="complement" />
+                                    <Input name="title" id="title" />
                                 </FormInputContainer>
 
                                 </FormGroup>
@@ -317,9 +312,9 @@ function Upload({ UFOptions }) {
                                     onClick={addInputButton}
                                 />
                                 </div>
-
-                                </div>
                             </div>
+                        </div>
+
 
                         </FormQuiz>
                     </fieldset>
@@ -336,10 +331,10 @@ function Upload({ UFOptions }) {
                     <StFormQuiz ref={formRef} onSubmit={handleFormSubmit}>
 
                         <fieldset>
-                        <h3>Informações Quiz:</h3>
+                        <h3></h3>
                             <FormQuiz mult={true}>
 
-                            <div className='Cast'>
+                            <div className='Casti'>
                                 <div className='Cadi'>
                                     <label htmlFor="uf">Selecione a Categoria</label>
 
@@ -364,6 +359,15 @@ function Upload({ UFOptions }) {
 
                                     </FormGroup>
                                 </div>
+
+                                <div className='addQuiz'>
+                                    <label htmlFor="city">Adicionar Quiz</label>
+                                    <div className='maisQuiz'>
+                                    <StAdd
+                                        onClick={addInputButton}
+                                    />
+                                    </div>
+                                </div>
                             </div>
 
                             </FormQuiz>
@@ -375,12 +379,6 @@ function Upload({ UFOptions }) {
 
 
                 ))}
-
-
-
-
-
-
 
             <PaperCadastrarQuiz ref={divRef}>
 

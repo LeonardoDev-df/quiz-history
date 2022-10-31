@@ -54,24 +54,18 @@ const userTabs = [
     {
         id: 7,
         icon: StQuiz,
-        title: ' Cadastrar Quiz',
-        urlPath: 'Quiz',
-        isActive: false
-    },
-    {
-        id: 8,
-        icon: StQuiz,
-        title: ' Cadastrar Questões',
-        urlPath: 'Questions',
+        title: 'Quizzes',
+        urlPath: 'ListQuiz',
         isActive: false
     },
     {
         id: 9,
         icon: StQuiz,
-        title: 'Quizzes',
-        urlPath: 'ListQuiz',
+        title: ' Cadastrar Quiz',
+        urlPath: 'Quiz',
         isActive: false
     },
+
     {
         id: 10,
         icon: StQuiz,
@@ -80,6 +74,7 @@ const userTabs = [
         urlPath: 'emblems',
         isActive: false
     }
+
 ]
 
 const adminTabs = [

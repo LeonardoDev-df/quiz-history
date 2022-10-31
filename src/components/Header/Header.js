@@ -14,8 +14,8 @@ const Header = () => {
 
       <hr className="divider" />
     </nav>
-    
-    
+
+
   );
 };
 

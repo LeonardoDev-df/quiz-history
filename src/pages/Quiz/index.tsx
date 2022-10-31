@@ -23,6 +23,16 @@ import * as Yup from 'yup'
 import axios from 'axios'
 
 import {
+
+    QuizGaming,
+    Header,
+
+    Four
+} from '../../styles/pages/Home'
+
+import Link from '../../infra/components/Link'
+
+import {
     Container,
     Paper,
     PaperQuiz,
@@ -32,7 +42,7 @@ import {
     StForm,
     FormInputContainer
 } from '../../styles/pages/shared/control-panel.styles'
-import { SidebarLayout } from '../../components/layouts/sidebar-layout-quiz'
+import { SidebarLayout } from '../../components/layouts/sidebar-layout-quizes'
 import getValidationErrors from '../../utils/getValidationErrors'
 import { sortArrayObject } from '../../utils/sortArrayObject'
 import { asyncHandler } from '../../utils/asyncHandler'
@@ -257,7 +267,7 @@ function Upload({ UFOptions }) {
     )
     return (
         <Container>
-            <Head title="Upload 3D | RV History" />
+
 
             <PaperQuiz ref={divRef}>
 
@@ -265,52 +275,75 @@ function Upload({ UFOptions }) {
                 <h1>Seja Bem-Vindo ao </h1>
                  <h1>Quiz History</h1>
 
+                 <div className='group'>
 
+                    <Flex
+                    padding={5}
+                    bgColor=""
+                    height="370px"
+                    container
+                    justifyContent="space-around"
+                    alignItems="flex-start"
+                    >
+
+                    <Box width="370px"
+                        height="300px"
+                        display="flex"
+                    >
+
+                        <div className='bordi'>
+                        <QuizGaming />
+
+
+
+                        </div>
+                    </Box>
+
+                </Flex>
 
                 <Flex
-                padding={5}
-                bgColor=""
-                height="350px"
-                container
-                justifyContent="space-around"
-                alignItems="flex-start"
-                >
+                    padding={5}
+                    bgColor=""
+                    height="370px"
+                    container
+                    justifyContent="space-around"
+                    alignItems="flex-start"
+                    >
 
-                <Box width="350px"
-                     height="300px"
-                     display="flex"
-                >
+                    <Box width="370px"
+                        height="300px"
+                        display="flex"
+                    >
 
-                     <div className='borda'>
-                         <h3>Pontuação dos Melhores Colocados</h3>
+                        <div className='borda'>
+                            <div className='ranki'>
+                                <h3>RANKING GERAL</h3>
+                            </div>
 
-                         <div className='ponto'>
-                            <div>Apelido</div> <div>Pontos</div>
-                         </div>
+                            <h3 className='melhor'>Pontuação dos Melhores Colocados</h3>
 
+                            <div className='pontua'>
+                                <div>Apelido</div> <div>Pontos</div>
+                            </div>
 
+                            <div className='ponto'>
+                                <div>Luiz</div> <div>60</div>
+                            </div>
 
-                        <p>_______________________________________</p>
+                            <div className='ponto'>
+                                <div>Pedro</div> <div>50</div>
+                            </div>
 
-                        <div className='ponto'>
-                            <div>Luiz</div> <div>60</div>
-                         </div> <div className='ponto'>
-                            <div>Pedro</div> <div>50</div>
-                         </div> <div className='ponto'>
-                            <div>José</div> <div>40</div>
-                         </div>
+                            <div className='ponto'>
+                                <div>José</div> <div>40</div>
+                            </div>
 
+                        </div>
+                    </Box>
 
-                     </div>
+                </Flex>
 
-
-
-
-                </Box>
-
-            </Flex>
-
-
+            </div>
 
 
                 </StForm>
