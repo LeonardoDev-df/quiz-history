@@ -5,8 +5,8 @@ import { Form } from '@unform/web'
 
 import { Button } from '../../../components/Button'
 import EmblemOuro from '../../../assets/illustrations/ouro.svg';
-import EmblemPrata from '../../../assets/illustrations/prata.svg';
-import EmblemBronze from '../../../assets/illustrations/bronzeall.svg';
+import EmblemPrata from '../../../assets/illustrations/silver.svg';
+import EmblemBronze from '../../../assets/illustrations/bronze.svg';
 import {
     Email,
     User,
@@ -198,6 +198,50 @@ export const Paper = styled.div`
     }
 `
 
+export const PaperStart = styled.div`
+    background: ${props => props.theme.colors.paper};
+    width: min(1164px, 100%);
+    height: fit-content;
+    border-radius: 8px;
+    position: absolute;
+    /* box-shadow: 0px 0px 50px 18px rgba(0,0,0,0.1); */
+    margin-left: 150px;
+
+
+
+    h3{
+        margin-left: -10px;
+    }
+
+    .butolist{
+        display: flex;
+
+        justify-content: space-around;
+        padding-top: 15px;
+    }
+
+    .pontos{
+        display: flex;
+        justify-content: space-around;
+        padding-bottom: 10px;
+        padding-top: 25px;
+      }
+
+    .msg{
+        text-align: center;
+    }
+    .emblem{
+        text-align: center;
+    }
+    padding: 2.4rem;
+    margin: auto;
+    /* margin-top: 4rem; */
+
+    & + div {
+        margin-top: 3.2rem;
+    }
+`
+
 export const PaperQuiz = styled.div`
     background: ${props => props.theme.colors.paper};
     width: min(964px, 90%);
@@ -304,6 +348,8 @@ export const PaperCadastrarQuiz = styled.div`
     width: min(964px, 90%);
     height: fit-content;
     border-radius: 8px;
+
+
 
     .editar{
         margin-left: -3px;
@@ -535,6 +581,60 @@ export const StButton = styled(Button) <{ toRight?: boolean }>`
 `
 
 export const StForm = styled(Form)`
+
+    .arrum{
+        margin-top: 3.5rem;
+    }
+    .lai{
+       margin-top: 35px;
+    }
+
+    .group{
+        display: flex;
+        justify-content: space-evenly;
+    }
+    & > fieldset {
+        h3 {
+            margin-bottom: .8rem;
+
+            padding: 15px;
+        }
+
+        h2{
+            text-align: center;
+        }
+
+        + fieldset {
+            margin-top: 1.6rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: .4rem;
+        }
+    }
+`
+
+export const StFormStart = styled(Form)`
+
+    margin-left: 10.6rem;
+
+    .start, .next {
+        cursor: pointer;
+        background: linear-gradient(180deg, #ffffff, #ffcc91);
+        border: 2px solid #d38558;
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+        height: 40px;
+        margin: 20px 0;
+        padding: 0 40px;
+        margin-left: 38.6rem;
+        margin-top: 2.8rem;
+      }
+
+      .start {
+        max-width: 200px;
+      }
 
     .group{
         display: flex;

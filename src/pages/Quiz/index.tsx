@@ -305,6 +305,7 @@ function Upload({ UFOptions }) {
                     padding={5}
                     bgColor=""
                     height="370px"
+                    width="470px"
                     container
                     justifyContent="space-around"
                     alignItems="flex-start"

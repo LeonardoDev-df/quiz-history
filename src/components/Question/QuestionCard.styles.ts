@@ -8,9 +8,11 @@ export const Wrapper = styled.div`
   padding: 20px;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
   text-align: center;
+  width: 90%;
+  height: 365px;
 
   p {
-    font-size: 1rem;
+    font-size: 2.2rem;
   }
 `;
 
@@ -21,6 +23,8 @@ type ButtonWrapperProps = {
 
 export const ButtonWrapper = styled.div<ButtonWrapperProps>`
   transition: all 0.3s ease;
+  width: 100%;
+  height: 68px;
 
   :hover {
     opacity: 0.8;
@@ -29,10 +33,10 @@ export const ButtonWrapper = styled.div<ButtonWrapperProps>`
   button {
     cursor: pointer;
     user-select: none;
-    font-size: 0.8rem;
+    font-size: 2rem;
     width: 100%;
-    height: 40px;
-    margin: 5px 0;
+    height: 55px;
+    margin: 6px 0;
     background: ${({ correct, userClicked }) =>
       correct
         ? 'linear-gradient(90deg, #56FFA4, #59BC86)'

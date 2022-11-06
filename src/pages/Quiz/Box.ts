@@ -32,8 +32,10 @@ export const Box = styled.div<BoxProps>`
 
     .melhor{
         font-family: Fascinate Inline;
-
+        font-size: 20px;
         font-weight: 400;
+        padding-left: 10px;
+        padding-right: 10px;
     }
 
     .ponto{
@@ -43,13 +45,13 @@ export const Box = styled.div<BoxProps>`
         padding-block-start: 20px;
         border-bottom: solid 1px;
         border-bottom-color: black;
-        padding-bottom: 10px;
+        padding-bottom: 14px;
         font-weight: bold;
         color: darkslategrey;
       }
 
       .img{
-      
+
       }
 
   ${({ width, height, bgColor, display, border }) => css`

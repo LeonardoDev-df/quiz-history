@@ -103,7 +103,7 @@ export const Flex = styled.div<FlexProps>`
     `}
     ${bgColor &&
     css`
-      background-color: ${bgColor};
+      border-color: ${bgColor};
     `}
     /* additional flex properties */
     ${flex &&
@@ -188,3 +188,5 @@ const handleMarginOrPadding = (
     margin: ${values}rem;
   `;
 };
+
+

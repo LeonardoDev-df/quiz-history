@@ -130,9 +130,10 @@ export default function Home() {
             <svg viewBox="0 0 500 40">
                 <path d="M0,0 L0,0 Q250,80 500,0 L500,0 Z" fill="#2D8CEB" />
             </svg>
-
+            <div id="about"></div>
+                 <div></div>
             <Main>
-                <SectionOne id="about">
+                <SectionOne >
                     <h2>
                         Sobre <span>o Projeto</span>
                     </h2>
@@ -209,7 +210,9 @@ export default function Home() {
                     </div>
                 </SectionThree>
 
-                <SectionFour id="Quiz">
+                <div id="Quiz"></div>
+                 <div></div>
+                <SectionFour >
                     <h2>
                         Sobre <span>o Quiz History</span>
                     </h2>

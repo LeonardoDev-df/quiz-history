@@ -1,13 +1,15 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
+import React, { useState } from 'react';
+import { fetchQuizQuestions } from './API';
+// types
+import { QuestionsState, Difficulty } from './API';
 
 import {
     useContext,
     useRef,
     useEffect,
-    useState,
     useCallback,
     FocusEvent
 } from 'react'
@@ -41,25 +43,16 @@ import { useToast } from '../../../../hooks/use-toast'
 import { Input } from '../../../../components/Input'
 import Head from '../../../../infra/components/Head'
 
-interface CepResponse {
-    cep: string
-    logradouro: string
-    complemento: string
-    bairro: string
-    localidade: string
-    uf: string
-    unidade: string
-    ibge: string
-    gia: string
-}
 
-interface UFResponse {
-    sigla: string
-    nome: string
-}
-interface CityResponse {
-    nome: string
-}
+export type AnswerObject = {
+    question: string;
+    answer: string;
+    correct: boolean;
+    correctAnswer: string;
+  };
+
+  const TOTAL_QUESTIONS = 10;
+
 
 type OptionProps = readonly (OptionTypeBase | GroupTypeBase<OptionTypeBase>)[]
 
@@ -74,259 +67,106 @@ type FormSiteData = {
     uf: string
 }
 
-function Upload({ UFOptions }) {
-    const [citySelectOptions, setCitySelectOptions] = useState<OptionProps>()
-    const [hasAdvancedUpload, setHasAdvancedUpload] = useState(false)
-    const [isFileError, setIsFileError] = useState(false)
+function Upload() {
+
+
     const [isLoading, setIsLoading] = useState(false)
-    const [files, setFiles] = useState<FileList>()
-
-    const { colors } = useContext(ThemeContext)
-    const { addToast } = useToast()
-
     const divRef = useRef<HTMLDivElement>(null)
     const formRef = useRef<FormHandles>(null)
+    const [ quizes, setQuizes] = useState([])
 
-    const schema = Yup.object({
-        siteName: Yup.string().required('Nome obrigatório'),
-        zipCode: Yup.string().required('CEP obrigatório'),
-        streetAddress: Yup.string().required('Endereço obrigatório'),
-        number: Yup.string().required('Número obrigatório'),
-        complement: Yup.string(),
-        province: Yup.string().required('Bairro obrigatório'),
-        city: Yup.string().required('Cidade obrigatório'),
-        uf: Yup.string().required('UF obrigatório')
-    })
 
-    const isAdvancedUpload = () => {
-        const div = divRef.current
-        if (div) {
-            return (
-                ('draggable' in div ||
-                    ('ondragstart' in div && 'ondrop' in div)) &&
-                'FormData' in window &&
-                'FileReader' in window
-            )
-        } else {
-            return false
-        }
-    }
+    const [loading, setLoading] = useState(false);
+    const [questions, setQuestions] = useState<QuestionsState[]>([]);
+    const [number, setNumber] = useState(0);
+    const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
+    const [score, setScore] = useState(0);
+    const [gameOver, setGameOver] = useState(true);
+    { /* Apagar um campo */ }
+    const [show, setShow] = useState(true);
 
-    // execute the script above in a useEffect to garantee that is in client-side
-    useEffect(() => {
-        if (isAdvancedUpload()) {
-            setHasAdvancedUpload(true)
-        }
-    }, [])
 
-    const handleFormSubmit: SubmitHandler<FormSiteData> = useCallback(
-        async (data, { reset }) => {
-            setIsLoading(true)
-            try {
-                reset()
 
-                if (!files) {
-                    setIsFileError(true)
-                    throw new Error('No file encountered')
-                }
-                setIsFileError(false)
+    const startTrivia = async () => {
 
-                await schema.validate(data, {
-                    abortEarly: false
-                })
 
-                const image = files[0]
-                // Success validation
-                // const formData = new FormData()
-                // const imageData = {
-                //     type: image.type,
-                //     name: image.name,
-                //     size: image.size
-                // }
+      setLoading(true);
+      setGameOver(false);
+      const newQuestions = await fetchQuizQuestions(
+        TOTAL_QUESTIONS,
+        Difficulty.EASY
+      );
+      setQuestions(newQuestions);
+      setScore(0);
+      setUserAnswers([]);
+      setNumber(0);
+      setLoading(false);
 
-                // formData.append('image', image)
-                // formData.append('imageData', JSON.stringify(imageData))
-                const {
-                    city,
-                    complement,
-                    siteName,
-                    streetAddress,
-                    province,
-                    number,
-                    uf,
-                    zipCode
-                } = data
+    };
 
-                const siteData = {
-                    imageContentType: image.type,
-                    name: siteName,
-                    size: image.size,
-                    image,
-                    address: {
-                        city,
-                        complement,
-                        streetAddress,
-                        province,
-                        number,
-                        uf,
-                        zipCode
-                    }
-                }
-                // TODO: API connection
-                const response = await axios.post(
-                    '/api/historical-sites/create',
-                    siteData
-                )
-                if (response && response.data) {
-                    console.log(response.data)
-                }
-                // TODO: Adicionar os toasts
-            } catch (err) {
-                if (err instanceof Yup.ValidationError) {
-                    // Validation failed
-                    const validationErrors = getValidationErrors(err)
+    const checkAnswer = (e: any) => {
+      if (!gameOver) {
+        // User's answer
+        const answer = e.currentTarget.value;
+        // Check answer against correct answer
+        const correct = questions[number].correct_answer === answer;
+        // Add score if answer is correct
+        if (correct) setScore((prev) => prev + 1);
+        // Save the answer in the array for user answers
+        const answerObject = {
+          question: questions[number].question,
+          answer,
+          correct,
+          correctAnswer: questions[number].correct_answer,
+        };
+        setUserAnswers((prev) => [...prev, answerObject]);
+      }
+    };
 
-                    formRef.current?.setErrors(validationErrors)
-                }
-            } finally {
-                setIsLoading(false)
-            }
-        },
-        [files]
-    )
+    const nextQuestion = () => {
+      // Move on to the next question if not the last question
+      const nextQ = number + 1;
 
-    const handleCepBlur = useCallback(
-        async ({ target: { value } }: FocusEvent<HTMLInputElement>) => {
-            const cep = value.replace(/\D/g, '')
-
-            if (cep != '') {
-                const validacep = /^[0-9]{8}$/
-
-                if (validacep.test(cep)) {
-                    // * Habilitar o loading na tela
-                    setIsLoading(true)
-
-                    const [response, error] = await asyncHandler(
-                        axios.get<CepResponse>(
-                            `https://viacep.com.br/ws/${cep}/json/`
-                        )
-                    )
-
-                    if (response) {
-                        const {
-                            data: { logradouro, bairro, localidade, uf }
-                        } = response
-
-                        formRef.current.setFieldValue(
-                            'streetAddress',
-                            logradouro
-                        )
-                        formRef.current.setFieldValue('province', bairro)
-                        formRef.current.setFieldValue('uf', uf)
-                        const inUfRef = formRef.current.getFieldRef('uf')
-                        inUfRef.select.selectOption({ label: uf, value: uf })
-
-                        const inCityRef = formRef.current.getFieldRef('city')
-                        inCityRef.select.selectOption({
-                            label: localidade,
-                            value: localidade
-                        })
-                    } else {
-                        addToast({
-                            type: 'error',
-                            title: 'Ocorreu um erro ao buscar seus dados',
-                            description:
-                                'Não conseguimos buscar suas informações a partir do seu cep'
-                        })
-                    }
-                    setIsLoading(false)
-                } else {
-                    // cep inválido
-                    formRef.current.setFieldError('zipCode', 'cep inválido')
-                }
-            } else {
-                // cep sem valor
-                formRef.current.setFieldError('zipCode', 'cep é obrigatório')
-            }
-        },
-        []
-    )
+      if (nextQ === TOTAL_QUESTIONS) {
+        setGameOver(true);
+      } else {
+        setNumber(nextQ);
+      }
+    };
 
 
     const optionsCategory = [
         { value: 'Sítio', label: 'Sítio' },
         { value: 'Monumento', label: 'Monumento' },
         { value: 'Museu', label: 'Museu' }
-      ]
+      ];
     const optionsDificulty = [
         { value: 'Facil', label: 'Fácil' },
         { value: 'Medio', label: 'Médio' },
         { value: 'Dificil', label: 'Difícil' }
-      ]
+      ];
+
+      const startQuizButton = (e) => {
+        e.preventDefault()
+
+        setQuizes([...quizes, ""]);
+        setShow((s) => !s)
+    };
+
+
+
     return (
         <Container>
-            <Head title="Upload 3D | RV History" />
-
-            <Paper ref={divRef}>
-
-            <StForm ref={formRef} onSubmit={handleFormSubmit}>
-                <h1>Quiz History</h1>
-                <FormGroup mult={true}>
-
-                    <FormInputContainer gridColumn="2 / 4" id="apelido">
-                        <label htmlFor="complement" id="category">Informe seu apelido</label>
-                        <Input name="complement" id="complement" />
-                    </FormInputContainer>
-
-                </FormGroup>
-
-                <FormGroup mult={true}>
-
-                           
-                            <div id="category">
-                                <label htmlFor="uf" id="category">Selecione a Categoria</label>
-
-                                <Select
-                                    options={optionsCategory}
-                                    name="uf"
-                                    id="category"
-                                    instanceId="uf"
-                                    // isSearchable
-                                    onChange={''}
-                                    placeholder="Selecione..."
-                                />
-                            </div>
-
-                            
+            <Head title="Quiz | RV History" />
 
 
-                        </FormGroup>
-                        <FormGroup mult={true}>
+                    <React.StrictMode >
+                     <App  />
 
-                        <div id="category">
-                                <label htmlFor="city" id="category">Selecione a dificuldade</label>
-
-                                <Select
-                                    options={optionsDificulty}
-                                    name="city"
-                                    id="category"
-                                    instanceId="city"
-                                    placeholder="Selecione..."
-                                />
-                            </div>
-
-
-                        </FormGroup>
-
-                    <React.StrictMode>
-                     <App />
                     </React.StrictMode>
 
-                </StForm>
-                <Loading isVisible={isLoading} />
-            </Paper>
 
-            <Copy>&copy; 2021 RVHistory. All right reserved.</Copy>
+
         </Container>
     )
 }

@@ -23,7 +23,7 @@ import { Box } from './Box';
 
 import {
     Container,
-    Paper,
+    PaperQuiz,
     EmblemGold,
     EmblemSilver,
     EmblemBronzi,
@@ -106,26 +106,7 @@ function Upload({ UFOptions }) {
         uf: Yup.string().required('UF obrigatório')
     })
 
-    const isAdvancedUpload = () => {
-        const div = divRef.current
-        if (div) {
-            return (
-                ('draggable' in div ||
-                    ('ondragstart' in div && 'ondrop' in div)) &&
-                'FormData' in window &&
-                'FileReader' in window
-            )
-        } else {
-            return false
-        }
-    }
-
-    // execute the script above in a useEffect to garantee that is in client-side
-    useEffect(() => {
-        if (isAdvancedUpload()) {
-            setHasAdvancedUpload(true)
-        }
-    }, [])
+  
 
     const handleFormSubmit: SubmitHandler<FormSiteData> = useCallback(
         async (data, { reset }) => {
@@ -203,100 +184,77 @@ function Upload({ UFOptions }) {
         [files]
     )
 
-    const handleCepBlur = useCallback(
-        async ({ target: { value } }: FocusEvent<HTMLInputElement>) => {
-            const cep = value.replace(/\D/g, '')
-
-            if (cep != '') {
-                const validacep = /^[0-9]{8}$/
-
-                if (validacep.test(cep)) {
-                    // * Habilitar o loading na tela
-                    setIsLoading(true)
-
-                    const [response, error] = await asyncHandler(
-                        axios.get<CepResponse>(
-                            `https://viacep.com.br/ws/${cep}/json/`
-                        )
-                    )
-
-                    if (response) {
-                        const {
-                            data: { logradouro, bairro, localidade, uf }
-                        } = response
-
-                        formRef.current.setFieldValue(
-                            'streetAddress',
-                            logradouro
-                        )
-                        formRef.current.setFieldValue('province', bairro)
-                        formRef.current.setFieldValue('uf', uf)
-                        const inUfRef = formRef.current.getFieldRef('uf')
-                        inUfRef.select.selectOption({ label: uf, value: uf })
-
-                        const inCityRef = formRef.current.getFieldRef('city')
-                        inCityRef.select.selectOption({
-                            label: localidade,
-                            value: localidade
-                        })
-                    } else {
-                        addToast({
-                            type: 'error',
-                            title: 'Ocorreu um erro ao buscar seus dados',
-                            description:
-                                'Não conseguimos buscar suas informações a partir do seu cep'
-                        })
-                    }
-                    setIsLoading(false)
-                } else {
-                    // cep inválido
-                    formRef.current.setFieldError('zipCode', 'cep inválido')
-                }
-            } else {
-                // cep sem valor
-                formRef.current.setFieldError('zipCode', 'cep é obrigatório')
-            }
-        },
-        []
-    )
+   
 
 
     return (
         <Container>
 
-            <Paper ref={divRef}>
-            <h2 className='emblem'>Ranking Geral</h2>
+            <PaperQuiz ref={divRef}>
+
+            <StForm ref={formRef} onSubmit={handleFormSubmit}>
+            <h1>Seja Bem-Vindo ao </h1>
+            <h1>Ranking</h1>
+            
+
+            <div className='group'>
+
+            <div className='arrum'>
+                <label className='lai' htmlFor="siteName">Digite seu Apelido</label>
+                <Input  name="siteName" id="siteName" />
+            </div>
+
+                       
             <Flex
                 padding={5}
-                bgColor="pink"
-                height="400px"
+                bgColor=""
+                height="370px"
+                width="470px"
                 container
                 justifyContent="space-around"
                 alignItems="flex-start"
-            >
-
-                <Box width="350px"
-                     height="300px"
                 >
 
-                    <h3>Pontuação dos Melhores Colocados</h3>
-                    <p>  Apelido----------------------------------Pontos</p>
-                    <p>______________________________________</p>
+                <Box width="370px"
+                    height="300px"
+                    display="flex"
+                >
 
-                   
-                    <p> Luiz __________________________  60</p>
-                    <p> Pedro  ___________________   50</p>
-                    <p> José  ____________  40</p>
+                    <div className='borda'>
+                        <div className='ranki'>
+                            <h3>RANKING GERAL</h3>
+                        </div>
 
+                        <h3 className='melhor'>Pontuação dos Colocados</h3>
 
+                        <div className='pontua'>
+                            <div>Apelido</div> <div>Pontos</div>
+                        </div>
 
+                        <div className='ponto'>
+                            <div> </div> <div> </div>
+                        </div>
+                        <div className='ponto'>
+                            <div> </div> <div> </div>
+                        </div>
+                        <div className='ponto'>
+                            <div> </div> <div> </div>
+                        </div>
+                        <div className='ponto'>
+                            <div> </div> <div> </div>
+                        </div>
+
+                    </div>
                 </Box>
 
             </Flex>
 
-                <Loading isVisible={isLoading} />
-            </Paper>
+            </div>
 
+
+            </StForm>
+            <Loading isVisible={isLoading} />
+            </PaperQuiz>
 
 
             <Copy>&copy; 2021 RVHistory. All right reserved.</Copy>

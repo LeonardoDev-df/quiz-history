@@ -23,7 +23,7 @@ import { Box } from './Box';
 
 import {
     Container,
-    Paper,
+    PaperQuiz,
     EmblemGold,
     EmblemSilver,
     EmblemBronzi,
@@ -106,26 +106,7 @@ function Upload({ UFOptions }) {
         uf: Yup.string().required('UF obrigatório')
     })
 
-    const isAdvancedUpload = () => {
-        const div = divRef.current
-        if (div) {
-            return (
-                ('draggable' in div ||
-                    ('ondragstart' in div && 'ondrop' in div)) &&
-                'FormData' in window &&
-                'FileReader' in window
-            )
-        } else {
-            return false
-        }
-    }
-
-    // execute the script above in a useEffect to garantee that is in client-side
-    useEffect(() => {
-        if (isAdvancedUpload()) {
-            setHasAdvancedUpload(true)
-        }
-    }, [])
+  
 
     const handleFormSubmit: SubmitHandler<FormSiteData> = useCallback(
         async (data, { reset }) => {
@@ -209,52 +190,87 @@ function Upload({ UFOptions }) {
     return (
         <Container>
 
-            <Paper ref={divRef}>
-            <h2 className='emblem'>Emblemas Cadastrados</h2>
-            <Flex
-            padding={3}
-            bgColor=""
-            height="300px"
-            container
-            justifyContent="space-around"
-            alignItems="flex-start"
-            >
-                <EmblemBronzi />
+            <PaperQuiz ref={divRef}>
 
-                <EmblemSilver />
+            <StForm ref={formRef} onSubmit={handleFormSubmit}>
+            <h1>Seja Bem-Vindo ao </h1>
+            <h1>Quiz History</h1>
 
-                <EmblemGold/>
+            <div className='group'>
+
+                <Flex
+                padding={5}
+                bgColor=""
+                height="370px"
+                container
+                justifyContent="space-around"
+                alignItems="flex-start"
+                >
+
+                <Box width="370px"
+                    height="300px"
+                    display="flex"
+                >
+
+                    <div className='bordi'>
+                   
+
+
+
+                    </div>
+                </Box>
+
             </Flex>
 
+            <Flex
+                padding={5}
+                bgColor=""
+                height="370px"
+                width="470px"
+                container
+                justifyContent="space-around"
+                alignItems="flex-start"
+                >
+
+                <Box width="370px"
+                    height="300px"
+                    display="flex"
+                >
+
+                    <div className='borda'>
+                        <div className='ranki'>
+                            <h3>RANKING GERAL</h3>
+                        </div>
+
+                        <h3 className='melhor'>Pontuação dos Melhores Colocados</h3>
+
+                        <div className='pontua'>
+                            <div>Apelido</div> <div>Pontos</div>
+                        </div>
+
+                        <div className='ponto'>
+                            <div>Luiz</div> <div>60</div>
+                        </div>
+
+                        <div className='ponto'>
+                            <div>Pedro</div> <div>50</div>
+                        </div>
+
+                        <div className='ponto'>
+                            <div>José</div> <div>40</div>
+                        </div>
+
+                    </div>
+                </Box>
+
+            </Flex>
+
+            </div>
 
 
-       
-
-
-        <Flex
-            padding={5}
-            bgColor=""
-            height="30px"
-            container
-            justifyContent="space-between"
-            alignItems="initial"
-
-        >
-
-            <h3>5 Pontos no Quiz </h3>
-
-            <h3>7 Pontos no Quiz</h3>
-
-            <h3>10 Pontos no Quiz</h3>
-
-
-        </Flex>
-            <h3 className='msg'>Ao participar do quiz o usuário recebe o emblema e acumula pontos para classificação no ranking.</h3>
-
-
-                <Loading isVisible={isLoading} />
-            </Paper>
-
+            </StForm>
+            <Loading isVisible={isLoading} />
+            </PaperQuiz>
 
 
             <Copy>&copy; 2021 RVHistory. All right reserved.</Copy>

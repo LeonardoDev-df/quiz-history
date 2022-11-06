@@ -1,12 +1,20 @@
-import styled, { createGlobalStyle } from 'styled-components';
-import BGImage from "../../../assets/quiz.jpg";
+import styled, { css, createGlobalStyle } from 'styled-components'
+import { rgba, darken, shade } from 'polished'
+import { Form } from '@unform/web'
+import Laptops from '../../../assets/laptops.png'
+
+
 
 
 
 export const GlobalStyle = createGlobalStyle`
   html {
     height: 100%;
+    width: 100%;
   }
+
+  backgroundImage: url("../../../assets/laptops.png");
+
 
 
   h1 {
@@ -34,7 +42,7 @@ export const GlobalStyle = createGlobalStyle`
     width: 400px;
     margin-left: 260px;
   }
-  
+
   body {
     background-image: url("../../../assets/quiz.jpg");
     background-size: cover;
@@ -55,14 +63,27 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
 
+
+
   > p {
-    color: #fff;
+    color: black;
   }
 
   .score {
-    color: #fff;
+    color: black;
     font-size: 2rem;
     margin: 0;
+    padding-bottom: 10px;
+  }
+
+
+  .welcome {
+    color: black;
+    font-size: 2rem;
+    margin: 0;
+    padding-left: 72%;
+    padding-bottom: 10px;
+    padding-top: 10px;
   }
 
   h1 {
