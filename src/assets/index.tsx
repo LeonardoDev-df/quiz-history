@@ -99,7 +99,7 @@ export default function Home() {
                             do mundo através da Realidade Virtual.
                         </p>
 
-                        <Link href="/3d-view?idHistoricalSite=1001&year=2021">
+                        <Link href="/3d-view">
                             <button>
                                 Iniciar
                                 <ButtonEndIcon />

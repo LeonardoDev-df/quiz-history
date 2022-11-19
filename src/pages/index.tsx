@@ -131,7 +131,7 @@ export default function Home() {
                 <path d="M0,0 L0,0 Q250,80 500,0 L500,0 Z" fill="#2D8CEB" />
             </svg>
             <div id="about"></div>
-                 <div></div>
+
             <Main>
                 <SectionOne >
                     <h2>
@@ -211,7 +211,8 @@ export default function Home() {
                 </SectionThree>
 
                 <div id="Quiz"></div>
-                 <div></div>
+                <div></div>
+
                 <SectionFour >
                     <h2>
                         Sobre <span>o Quiz History</span>

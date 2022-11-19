@@ -132,6 +132,63 @@ export const Container = styled.div`
     }
 `
 
+export const Appx = styled.div`
+.App {
+    text-align: center;
+    padding-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .App h1 {
+    margin-bottom: 2rem;
+  }
+`
+
+export const ContQuiz = styled.div`
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Raleway", sans-serif;
+    color: #fff;
+  }
+
+  body,
+  html {
+    min-height: 100vh;
+    height: 100%;
+    background-color: #1c1c1c;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  button {
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0.8rem 1.5rem;
+    background: linear-gradient(
+      90deg,
+      rgba(132, 53, 222, 1) 0%,
+      rgba(184, 84, 232, 1) 100%
+    );
+    border-radius: 3rem;
+    border: none;
+  }
+
+  button:hover {
+    background: linear-gradient(
+      90deg,
+      rgba(184, 84, 232, 1) 0%,
+      rgba(132, 53, 222, 1) 100%
+    );
+  }
+`
+
 export const ContainerQuiz = styled.div`
     height: 100%;
     display: block;
@@ -206,6 +263,7 @@ export const PaperStart = styled.div`
     position: absolute;
     /* box-shadow: 0px 0px 50px 18px rgba(0,0,0,0.1); */
     margin-left: 150px;
+
 
 
 

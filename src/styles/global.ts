@@ -7,6 +7,8 @@ export default createGlobalStyle`
         box-sizing: border-box;
     }
 
+    
+
     html {
         /* a cada 1rem será considera 10px */
         font-size: 62.5%;

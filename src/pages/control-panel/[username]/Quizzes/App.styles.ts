@@ -6,6 +6,40 @@ import Laptops from '../../../assets/laptops.png'
 
 
 
+export const Global = createGlobalStyle`
+
+
+  html {
+   
+    min-height: 50vh;
+    height: 30%;
+    background-color: #1c1c1c;
+  }
+
+  button {
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 2.2rem;
+    padding: 0.8rem 1.5rem;
+    background: linear-gradient(
+      90deg,
+      rgba(132, 53, 222, 1) 10%,
+      rgba(184, 84, 232, 1) 110%
+    );
+    border-radius: 3rem;
+    border: none;
+  }
+
+  button:hover {
+    background: linear-gradient(
+      90deg,
+      rgba(184, 84, 232, 1) 0%,
+      rgba(132, 53, 222, 1) 100%
+    );
+  }
+
+`;
+
 
 export const GlobalStyle = createGlobalStyle`
   html {
@@ -57,6 +91,22 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 `;
+
+export const Wra = styled.div`
+.App {
+    text-align: center;
+    padding-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .App h1 {
+    margin-bottom: 2rem;
+  }
+`;
+
 
 export const Wrapper = styled.div`
   display: flex;
