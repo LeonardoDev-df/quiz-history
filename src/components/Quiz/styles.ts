@@ -1,17 +1,5 @@
 import styled, { css } from 'styled-components'
 
-import AssetLogo from '../../assets/Quizee.svg';
-
-export const QuizHome = styled(Object(AssetLogo))`
-width: 80%;
-height: auto;
-
-@media screen and (max-width: 540px) {
-    display: none;
-}
-`;
-
-
 
 export const GameOveri = styled.div`
 .gameover {
@@ -24,6 +12,14 @@ export const GameOveri = styled.div`
   .gameover h2,
   .gameover p {
     margin-bottom: 1rem;
+  }
+
+  button{
+    color: #D8BFD8;
+    width: 250px;
+    text-align: center;
+    margin-left: 120px;
+    margin-top: 2rem;
   }
 
   .gameover p {
@@ -74,27 +70,61 @@ export const Options = styled.div`
 export const Welcom = styled.div`
 .welcome {
     text-align: center;
-    max-width: 200px;
-    height: 10px;
+    max-width: 660px;
+    height: 50px;
   }
 
-  .welcome img{
-    height: 100px;
+  .imge{
+    text-align: center;
+    margin-top: 7rem;
   }
 
   .welcome h2,
   .welcome p {
+    height: 50px;
     margin-bottom: 1rem;
   }
 
+  button{
+    color: #D8BFD8;
+  }
   .welcome p {
-    color: #8435de;
+    color: #D8BFD8;
   }
 `
 export const PickCate= styled.div`
 .category {
-    text-align: center;
-    max-width: 500px;
+  margin-left: 300px;
+    max-width: 700px;
+    
+  }
+
+  .MuiInputLabel-root {
+    font-size: 15px !important;
+    padding-bottom: 15px !important;
+  }
+  
+  .MuiInput-root {
+    height: 15px !important;
+  }
+
+  .fac{
+    font-size: 20px;
+  }
+
+  .settings_select {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    margin-top: 85px;
+    width: 25%;
+    height: 22%;
+    flex: 0.8;
+    margin-left: -280px;
+    border-radius: 35px;
+    border: solid 2px;
+    border-color:  #8435de;
   }
 
   .category h2,
@@ -103,16 +133,17 @@ export const PickCate= styled.div`
   }
 
   .category p {
-    color: #8435de;
+    color: #D8BFD8;
   }
 
-  .category img {
-    margin-top: 2rem;
+  .category imge {
+    margin-top: 1rem;
     max-width: 300px;
   }
 
   .category button {
     margin: 1rem;
+    color: #D8BFD8;
   }
 `
 
@@ -121,19 +152,32 @@ export const Quest = styled.div`
     background-color: #8435de;
     border-radius: 1rem;
     padding: 2rem;
-    width: 500px;
+    width: 950px;
+  }
+
+  .subtitle{
+    color: #F2F2F2;
+    margin-left: -690px;   
+  }
+
+  .subtitle:hover {
+    opacity: 1;
+    color: #D8BFD8;;
   }
 
   .question p {
     margin-bottom: 1rem;
+    color: #D8BFD8;
   }
 
   .question h2 {
     margin-bottom: 2rem;
+     color: #D8BFD8;
   }
 
   .question button {
     border: 2px solid #fff;
     margin: 1rem;
+    color: #D8BFD8;
   }
 `

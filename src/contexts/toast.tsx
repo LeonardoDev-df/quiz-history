@@ -32,7 +32,7 @@ const ToastProvider: React.FC = ({ children }) => {
             description: message.description
         }
 
-        setToasts(oldToasts => [...oldToasts, newToast])
+ //       setToasts(oldToasts => [...oldToasts, newToast])
     }, [])
     const removeToast = useCallback((id: string) => {
         setToasts(oldToasts => oldToasts.filter(toast => toast.id !== id))

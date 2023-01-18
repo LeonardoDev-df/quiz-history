@@ -43,9 +43,8 @@ export { LogOut } from '@styled-icons/evaicons-solid/LogOut';
 export { AlertTriangle } from '@styled-icons/evaicons-solid/AlertTriangle';
 export { CloseCircle } from '@styled-icons/remix-fill/CloseCircle';
 export { Close } from '@styled-icons/ionicons-solid/Close';
-export { CheckCircle } from '@styled-icons/fa-solid/CheckCircle';
 
-
+//export { CheckCircle } from '@styled-icons/fa-solid/CheckCircle';
 export { ArrowIosBackOutline } from '@styled-icons/evaicons-outline/ArrowIosBackOutline';
 export { ArrowIosForwardOutline } from '@styled-icons/evaicons-outline/ArrowIosForwardOutline';
 export { ArrowheadLeftOutline } from '@styled-icons/evaicons-outline/ArrowheadLeftOutline';

@@ -294,12 +294,18 @@ function Upload({ UFOptions }) {
         setShow((s) => !s)
       };
 
+      const AlertQuizEditButton = (e) => {
+        e.preventDefault()
+        confirm("Tem certeza que deseja EXCLUIR este quiz ?");
+      };
+
 
 
       { /* Apagar um campo */ }
        const [show, setShow] = useState(true);
 
        function refreshPage(){
+        alert("Edição de Dados foi cancelada com sucesso!")
         window.location.reload();
        }
 
@@ -403,7 +409,7 @@ function Upload({ UFOptions }) {
                             <div className='listedi'>
                                     <div className='buttonadd'>
                                         <StTrashQuize
-
+                                        onClick={AlertQuizEditButton}
                                         />
                                     </div>
 
@@ -527,7 +533,7 @@ function Upload({ UFOptions }) {
                             </div>
 
                             <div className='flex-container'>
-                                <input type="radio" className='sell' value="Vdd" name="gender" />
+                                <input type="radio" className='sell' value="Vdd" name="gender" checked/>
                                 <div  className='sepi'>
                                 < FormInputContainerQuiz gridColumn="  1/ 4">
                                 <InputQuiz name="complement" id="complement" value="2006" />
@@ -572,7 +578,7 @@ function Upload({ UFOptions }) {
                         <FormInputContainer gridColumn="1 / 4">
 
                         <label className='vtt'>Informe qual será a Pergunta</label>
-                        <Input name="complement" id="complement"  value="Qual nome do arquiteto responsável pela Obra ?"/>
+                        <Input name="complement" id="complement"  value="Qual o nome do arquiteto responsável pela Obra ?"/>
 
                             <div className='flex-container'>
                                 <input type="radio" className='sell' value="Vdd" name="gender"  checked/>
@@ -686,13 +692,13 @@ function Upload({ UFOptions }) {
                         <FormInputContainer gridColumn="1 / 4">
 
                         <label className='vtt'>Informe qual será a Pergunta</label>
-                        <Input name="complement" id="complement" />
+                        <Input name="complement" id="complement" value="Quais horários de visitação?"/>
 
                             <div className='flex-container'>
                                 <input type="radio" className='sell' value="Vdd" name="gender" />
                                 <div  className='sepi'>
                                 < FormInputContainerQuiz gridColumn="  1/ 4">
-                                <InputQuiz name="complement" id="complement" />
+                                <InputQuiz name="complement" id="complement" value="Horário de visitação: sextas, sábados e domingos das 08h às 12h."/>
                                 </ FormInputContainerQuiz>
                                 </div>
                             </div>
@@ -701,7 +707,7 @@ function Upload({ UFOptions }) {
                                 <input type="radio" className='sell' value="Vdd" name="gender"  checked/>
                                 <div  className='sepi'>
                                 < FormInputContainerQuiz gridColumn="  1/ 4">
-                                <InputQuiz name="complement" id="complement" />
+                                <InputQuiz name="complement" id="complement" value="Horário de visitação: sextas, sábados e domingos das 06h às 10h."/>
                                 </ FormInputContainerQuiz>
                                 </div>
                             </div>
@@ -710,7 +716,7 @@ function Upload({ UFOptions }) {
                                 <input type="radio" className='sell' value="Vdd" name="gender" />
                                 <div  className='sepi'>
                                 < FormInputContainerQuiz gridColumn="  1/ 4">
-                                <InputQuiz name="complement" id="complement" />
+                                <InputQuiz name="complement" id="complement" value="Horário de visitação: sextas, sábados e domingos das 10h às 16h." checked/>
                                 </ FormInputContainerQuiz>
                                 </div>
                             </div>
@@ -719,7 +725,7 @@ function Upload({ UFOptions }) {
                                 <input type="radio" className='sell' value="Vdd" name="gender" />
                                 <div  className='sepi'>
                                 < FormInputContainerQuiz gridColumn="  1/ 4">
-                                <InputQuiz name="complement" id="complement" />
+                                <InputQuiz name="complement" id="complement" value="Horário de visitação: sextas, sábados e domingos das 13h às 19h"/>
                                 </ FormInputContainerQuiz>
                                 </div>
                             </div>
@@ -743,13 +749,202 @@ function Upload({ UFOptions }) {
                         <FormInputContainer gridColumn="1 / 4">
 
                         <label className='vtt'>Informe qual será a Pergunta</label>
-                        <Input name="complement" id="complement" />
+                        <Input name="complement" id="complement" value="O que é o Museu Nacional da República?"/>
 
                             <div className='flex-container'>
                                 <input type="radio" className='sell' value="Vdd" name="gender" />
                                 <div  className='sepi'>
                                 < FormInputContainerQuiz gridColumn="  1/ 4">
-                                <InputQuiz name="complement" id="complement" />
+                                <InputQuiz name="complement" id="complement" value="É um espaço que insere Brasília no circuito internacional das artes e mostra o que há de melhor na arte brasileira." checked/>
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender"  checked/>
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement" value="O Museu Nacional da República é integrante do Conjunto Cultural da República."/>
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender" />
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement" value="Obra de Oscar Niemeyer, o Museu começou a ser construído em 1999."/>
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender" />
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement" value="Foi idealizado para fazer parte do Setor Cultural Sul da Nova Capital."/>
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+                        </FormInputContainer>
+                    </FormGroup>
+                </fieldset>
+            </StFormQuiz>
+
+            <Loading isVisible={isLoading} />
+            </Paper>
+
+            <Paper >
+
+            <StFormQuiz ref={formRef} onSubmit={handleFormSubmit}>
+
+                <fieldset>
+                <h3>Questões</h3>
+
+                    <FormGroup mult={true}>
+
+                        <FormInputContainer gridColumn="1 / 4">
+
+                        <label className='vtt'>Informe qual será a Pergunta</label>
+                        <Input name="complement" id="complement" value="Qual a missão do Museu Nacional da República?"/>
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender" />
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement" value="Elevar e revelar ao maior número de pessoas possível, a cultura visual contemporânea." checked/>
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender"  checked/>
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement" value="Organizar as informações do mundo todo e torná-las acessíveis e úteis em caráter universal."/>
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender" />
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement" value="Levar inspiração e inovação para os atletas de todo o mundo."/>
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender" />
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement" value="Levar alegria para todas as pessoas do mundo."/>
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+                        </FormInputContainer>
+                    </FormGroup>
+                </fieldset>
+            </StFormQuiz>
+
+            <Loading isVisible={isLoading} />
+            </Paper>
+
+            <Paper >
+
+            <StFormQuiz ref={formRef} onSubmit={handleFormSubmit}>
+
+                <fieldset>
+                <h3>Questões</h3>
+
+                    <FormGroup mult={true}>
+
+                        <FormInputContainer gridColumn="1 / 4">
+
+                        <label className='vtt'>Informe qual será a Pergunta</label>
+                        <Input name="complement" id="complement" value="Qual endereço, do Museu Nacional da República?"/>
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender" />
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement" value="Endereço: Setor Cultural Sul, lote 2, próximo à Rodoviária do Plano Piloto – Zona 0." checked/>
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender"  checked/>
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement" value="Endereço: Zona cívico Administrativa, Esplanada dos Ministérios – Lote 12."/>
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender" />
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement" value="Endereço: Eixo Monumental - Lado Oeste - Praça do Cruzeiro."/>
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender" />
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement" value="Endereço: Feira de Artesanato da Torre de TV SDC - Eixo Monumental."/>
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+                        </FormInputContainer>
+                    </FormGroup>
+                </fieldset>
+            </StFormQuiz>
+
+            <Loading isVisible={isLoading} />
+            </Paper>
+
+            <Paper >
+
+            <StFormQuiz ref={formRef} onSubmit={handleFormSubmit}>
+
+                <fieldset>
+                <h3>Questões</h3>
+
+                    <FormGroup mult={true}>
+
+                        <FormInputContainer gridColumn="1 / 4">
+
+                        <label className='vtt'>Informe qual será a Pergunta</label>
+                        <Input name="complement" id="complement" value="O auditório maior do museu possui quantos lugares para o público?"/>
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender" />
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement" value="500 lugares"/>
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender" />
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement" value="450 lugares"/>
+                                </ FormInputContainerQuiz>
+                                </div>
+                            </div>
+
+                            <div className='flex-container'>
+                                <input type="radio" className='sell' value="Vdd" name="gender" />
+                                <div  className='sepi'>
+                                < FormInputContainerQuiz gridColumn="  1/ 4">
+                                <InputQuiz name="complement" id="complement" value="390 lugares"/>
                                 </ FormInputContainerQuiz>
                                 </div>
                             </div>
@@ -758,25 +953,7 @@ function Upload({ UFOptions }) {
                                 <input type="radio" className='sell' value="Vdd" name="gender" checked/>
                                 <div  className='sepi'>
                                 < FormInputContainerQuiz gridColumn="  1/ 4">
-                                <InputQuiz name="complement" id="complement" />
-                                </ FormInputContainerQuiz>
-                                </div>
-                            </div>
-
-                            <div className='flex-container'>
-                                <input type="radio" className='sell' value="Vdd" name="gender" />
-                                <div  className='sepi'>
-                                < FormInputContainerQuiz gridColumn="  1/ 4">
-                                <InputQuiz name="complement" id="complement" />
-                                </ FormInputContainerQuiz>
-                                </div>
-                            </div>
-
-                            <div className='flex-container'>
-                                <input type="radio" className='sell' value="Vdd" name="gender" />
-                                <div  className='sepi'>
-                                < FormInputContainerQuiz gridColumn="  1/ 4">
-                                <InputQuiz name="complement" id="complement" />
+                                <InputQuiz name="complement" id="complement"  value="700 lugares" checked/>
                                 </ FormInputContainerQuiz>
                                 </div>
                             </div>

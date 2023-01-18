@@ -40,7 +40,7 @@ export const Box = styled.div<BoxProps>`
 
     .ponto{
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         padding-inline: 40px;
         padding-block-start: 20px;
         border-bottom: solid 1px;
@@ -50,12 +50,9 @@ export const Box = styled.div<BoxProps>`
         color: darkslategrey;
       }
 
-      
+      .img{
 
-      img {
-        width: 100%;
-        height: auto;
-    }
+      }
 
   ${({ width, height, bgColor, display, border }) => css`
     width: ${width || '100px'};

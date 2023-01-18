@@ -272,15 +272,15 @@ function Upload({ UFOptions }) {
                             </div>
 
                             <div className='ponto'>
-                                <div>Luiz</div> <div>60</div>
+                                <div></div> <div></div>
                             </div>
 
                             <div className='ponto'>
-                                <div>Pedro</div> <div>50</div>
+                                <div></div> <div></div>
                             </div>
 
                             <div className='ponto'>
-                                <div>José</div> <div>40</div>
+                                <div></div> <div></div>
                             </div>
 
                         </div>
@@ -295,7 +295,7 @@ function Upload({ UFOptions }) {
                 <Loading isVisible={isLoading} />
             </PaperQuiz>
 
-            <Copy>&copy; 2021 RVHistory. All right reserved.</Copy>
+            <Copy>&copy; 2023 QuizHistory. All right reserved.</Copy>
         </Container>
     )
 }

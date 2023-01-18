@@ -30,7 +30,7 @@ import {
     FormGroup,
     StTrashEmble,
     StAdd,
-    StButton,
+    StButtonEmble,
     Copy,
     PseudoInput,
     StForm,
@@ -204,7 +204,10 @@ function Upload({ UFOptions }) {
         [files]
     )
 
-    
+    const AlertQuizEmblema = () => {
+        window.location.reload();
+        alert("Emblema Cadastrado com Sucesso!");
+      };
 
 
     return (
@@ -280,9 +283,11 @@ function Upload({ UFOptions }) {
                             <Input name="siteName" id="siteName" />
                         </div>
                     </fieldset>
-                    <StButton type="submit" toRight>
+                    <StButtonEmble type="submit" 
+                    onClick={AlertQuizEmblema}
+                    >
                         Enviar
-                    </StButton>
+                    </StButtonEmble>
                 </StForm>
                 <Loading isVisible={isLoading} />
             </Paper>

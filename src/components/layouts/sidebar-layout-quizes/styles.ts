@@ -215,4 +215,5 @@ export const Main = styled.div<NavProps>`
 export const Logo = styled(Object(AssetLogo))`
     width: 180px;
     height: auto;
+    margin-left: -33.4rem;
 `;

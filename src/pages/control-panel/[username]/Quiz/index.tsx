@@ -13,6 +13,8 @@ import { GetServerSideProps } from 'next'
 import { parseCookies } from 'nookies'
 import * as Yup from 'yup'
 import axios from 'axios'
+import { Box, Alert, IconButton, Collapse, Button } from '@mui/material';
+import { Close } from '@mui/icons-material'
 
 
 import {
@@ -24,6 +26,7 @@ import {
     FormQuiz,
     StButton,
     Copy,
+    Copyn,
     StForm,
     FormInputContainer,
     FormInputContainerQuiz
@@ -42,6 +45,12 @@ import { Input } from '../../../../components/Input'
 import { InputQuiz } from '../../../../components/InputQuiz'
 import Head from '../../../../infra/components/Head'
 import { Quiz } from '../../../../styles/Icons'
+
+
+
+
+// optional configuration
+
 
 interface CepResponse {
     cep: string
@@ -266,9 +275,55 @@ function Upload({ UFOptions }) {
 
         setQuizes([...quizes, ""]);
     };
+
+    const AlertQuizEditButton = (e) => {
+        e.preventDefault()
+        alert("Cadastro cancelado!");
+      };
+
+    const styles = {
+
+        largeIcon: {
+          width: 60,
+          height: 60,
+        },
+      
+      };
+
+    const [open, setOpen] = useState(false)
     return (
         <ContainerQuiz>
             <Head title="Upload 3D | RV History" />
+
+
+            <Copyn>
+            <div className='alert'>
+                <Collapse in={open}
+                >
+                        <Alert severity="success" 
+                         
+                        action={
+                            <IconButton
+                                size="large"
+                                color="inherit"
+                                onClick={() => {
+                                setOpen(false)
+                                
+                                }}
+                               
+                            >                                            
+                            </IconButton>                   
+                        } 
+                                                  
+                            >
+                            <p>Quiz Cadastrado com sucesso !</p>
+                        </Alert>
+                </Collapse>
+                </div>
+            </Copyn>
+            
+
+           
 
             <PaperCadastrarQuiz ref={divRef}>
                 <h2>Cadastrar Quiz</h2>
@@ -344,7 +399,7 @@ function Upload({ UFOptions }) {
                                         id="uf"
                                         instanceId="uf"
                                         // isSearchable
-                                        onChange={''}
+                                       
                                         placeholder="Selecione..."
                                     />
                                 </div>
@@ -358,16 +413,7 @@ function Upload({ UFOptions }) {
                                     </FormInputContainer>
 
                                     </FormGroup>
-                                </div>
-
-                                <div className='addQuiz'>
-                                    <label htmlFor="city">Adicionar Quiz</label>
-                                    <div className='maisQuiz'>
-                                    <StAdd
-                                        onClick={addInputButton}
-                                    />
-                                    </div>
-                                </div>
+                                </div>                              
                             </div>
 
                             </FormQuiz>
@@ -379,17 +425,29 @@ function Upload({ UFOptions }) {
 
 
                 ))}
-
+           
+                
             <PaperCadastrarQuiz ref={divRef}>
 
+
+           
                     <div  className='buto'>
                         <div>
-                        <StButton type="submit" toRight>
+                        <StButton             
+                        onClick={AlertQuizEditButton}
+                        >      
                         CANCELAR
                         </StButton>
                         </div>
                         <div>
-                        <StButton type="submit" toRight>
+                        <StButton 
+                            onClick={() => {
+                                setOpen(true)
+                                setTimeout(function(){
+                                    window.location.reload();
+                                 }, 7000);
+                            }}                                  
+                        >
                         CADASTRAR
                         </StButton>
                         </div>

@@ -32,6 +32,13 @@ const userTabs = [
     {
         id: 1,
         icon: StDashboard,
+        title: 'Bem-vindo',
+        urlPath: 'welcome',
+        isActive: false
+    },
+    {
+        id: 2,
+        icon: StDashboard,
         title: 'Quizzes',
         urlPath: 'Quizzes',
         isActive: false

@@ -15,40 +15,30 @@ import PickCategory from "../../../../components/Quiz/PickCategory";
 
 
 
-import {
-    Container,
-    PaperStart,
-    StFormStart,
-    FormGroup,
-    Appx,
-    Copy,
-    StForm,
-    FormInputContainer
-} from '../../../../styles/pages/shared/control-panel.styles'
-
+import { PaperStart, Copy, Container } from '../../../../styles/pages/shared/control-panel.styles'
 
 
 const App: React.FC = () => {
 
     const [isLoading, setIsLoading] = useState(false)
-
+    const [name, setName ] = useState("")
     const [quizState, dispatch] = useContext(QuizContext);
-
+    const [score, setScore] = useState(0)
 
   return (
     <>
-       
-       <Appx>
-          <h1>Quiz History</h1>
-                           
+       <PaperStart>
+                  
           <div className="App">
-
+          
             {quizState.gameStage === "Start" && <Welcome />}
-            {quizState.gameStage === "Category" && <PickCategory />}
-            {quizState.gameStage === "Playing" && <Question />}
+            {quizState.gameStage === "Category" && <PickCategory name={name} setName={setName}/>}
+            {quizState.gameStage === "Playing" && <Question name={name} score={score}/>}
             {quizState.gameStage === "End" && <GameOver />}
           </div>
-        </Appx>
+       
+        
+        </PaperStart>
         <Loading isVisible={isLoading} />
         <Copy>&copy; 2021 RVHistory. All right reserved.</Copy>
     </>

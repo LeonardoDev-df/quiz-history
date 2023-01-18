@@ -122,6 +122,18 @@ export const Container = styled.div`
     display: block;
     overflow: auto;
 
+    .App {
+        text-align: center;
+        padding-top: 3rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .App h1 {
+        margin-bottom: 2rem;
+      }
 
     background: ${props => props.theme.colors.background};
     padding: 2.4rem;
@@ -193,7 +205,12 @@ export const ContainerQuiz = styled.div`
     height: 100%;
     display: block;
     overflow: auto;
-
+    
+    alert{
+      background-color: red; 
+      color: red; 
+      font-family: Fascinate Inline;
+    }
     h2{
         text-align: center;
         padding-bottom: 15px;
@@ -222,6 +239,23 @@ export const Paper = styled.div`
     position: relative;
     /* box-shadow: 0px 0px 50px 18px rgba(0,0,0,0.1); */
 
+    .vi{
+        background-color: red; 
+    }
+
+    .App {
+        text-align: center;
+        padding-top: 3rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .App h1 {
+        margin-bottom: 2rem;
+      }
+      
     h3{
         margin-left: -10px;
     }
@@ -256,48 +290,48 @@ export const Paper = styled.div`
 `
 
 export const PaperStart = styled.div`
-    background: ${props => props.theme.colors.paper};
-    width: min(1164px, 100%);
-    height: fit-content;
-    border-radius: 8px;
-    position: absolute;
-    /* box-shadow: 0px 0px 50px 18px rgba(0,0,0,0.1); */
-    margin-left: 150px;
+    height: 90%;
+    display: block;
 
-
-
-
-    h3{
-        margin-left: -10px;
-    }
-
-    .butolist{
+    .App {
+        text-align: center;
+        padding-top: 3rem;
         display: flex;
-
-        justify-content: space-around;
-        padding-top: 15px;
-    }
-
-    .pontos{
-        display: flex;
-        justify-content: space-around;
-        padding-bottom: 10px;
-        padding-top: 25px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
       }
-
-    .msg{
-        text-align: center;
-    }
-    .emblem{
-        text-align: center;
-    }
+      
+      .App h1 {
+        margin-bottom: 2rem;
+      }
+      
+    background: ${props => props.theme.colors.background};
     padding: 2.4rem;
-    margin: auto;
-    /* margin-top: 4rem; */
+    /* overflow: auto; */
 
-    & + div {
-        margin-top: 3.2rem;
-    }
+    
+  button {
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 2.2rem;
+    padding: 0.8rem 1.5rem;
+    background: linear-gradient(
+      90deg,
+      rgba(132, 53, 222, 1) 10%,
+      rgba(184, 84, 232, 1) 110%
+    );
+    border-radius: 3rem;
+    border: none;
+  }
+
+  button:hover {
+    background: linear-gradient(
+      90deg,
+      rgba(184, 84, 232, 1) 0%,
+      rgba(132, 53, 222, 1) 100%
+    );
+  }
 `
 
 export const PaperQuiz = styled.div`
@@ -638,13 +672,61 @@ export const StButton = styled(Button) <{ toRight?: boolean }>`
     `}
 `
 
+export const StButtonEmble = styled(Button) <{ toRight?: boolean }>`
+
+    height: fit-content;
+    border-radius: 4px;
+    alig-itens: center;
+    padding: 1rem 2.4rem;
+    font-size: 2rem;
+    font-weight: 900;
+
+    margin-top: 2.4rem;
+
+    ${props => !props.color && css`
+        background: ${props.theme.colors.primary};
+
+        :hover {
+            background: ${shade(0.1, props.theme.colors.primary)} !important;
+        }
+    `}
+
+    ${props => props.toRight && css`
+        margin-left: auto;
+    `}
+`
+
 export const StForm = styled(Form)`
 
     .arrum{
         margin-top: 3.5rem;
+        align-items: stretch;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        width: 100%;
+        padding-left: 120px;
     }
-    .lai{
-       margin-top: 35px;
+
+    
+    input{
+     
+      margin-top: 3.0rem;
+      
+      align-items: stretch;
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      width: 70%;
+      
+    }
+    
+    .ast{
+      background-color: coral;
+      width: 200px;
+      
+        color: white;
+      
     }
 
     .group{
@@ -1068,9 +1150,6 @@ export const FormInputContainer = styled.div<{ gridColumn?: string }>`
 
     }
 
-
-
-
     .sepi{
 
         margin-left:-400px;
@@ -1122,7 +1201,22 @@ export const ActButton = styled.button<{ colorType: "red" | "blue" }>`
     ${props => actButtonVariation[props.colorType]}
 `
 
-export const Copy = styled.span`
+export const Copyn = styled.div`
+    display: block;
+
+    margin: 4.4rem auto 0;
+    width: min(300px, 100%);
+    .alert{
+      width: min(800px, 100%);
+    }
+    p{
+      text-align: center;
+      font-size: 20px;
+    }
+   
+`
+
+export const Copy = styled.div`
     display: block;
     width: fit-content;
     margin: 2.4rem auto 0;

@@ -32,7 +32,9 @@ export const SidebarLayout: React.FC<{ changeTheme(): void }> = ({
                             <Three showSidebar={showSidebar} />
                         </button>
 
+                        <Link href="/">
                             <Logo />
+                        </Link>
 
                     </Navbar>
                     <Sidebar

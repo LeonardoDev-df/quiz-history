@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 
 import { QuizContext } from "../../context/quiz";
 
@@ -6,7 +6,7 @@ import Option from "./Option";
 
 import { Quest } from './styles'
 
-const Question = () => {
+const Question = ({ name, score}) => {
   const [quizState, dispatch] = useContext(QuizContext);
   const currentQuestion = quizState.questions[quizState.currentQuestion];
 
@@ -23,6 +23,9 @@ const Question = () => {
     <>
     <Quest>
     <div className="question">
+      <span className="subtitle">
+        Bem Vindo!  {name}
+      </span>
       <p>
         Pergunta {quizState.currentQuestion + 1} de {quizState.questions.length}
       </p>

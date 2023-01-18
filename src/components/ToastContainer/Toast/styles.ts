@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 import { animated } from '@react-spring/web'
 
-import { AlertTriangle, Close, CheckCircle, Info } from '../../../styles/Icons'
+import { AlertTriangle, Close,  Info } from '../../../styles/Icons'
 
 interface ToastProps {
     type?: "success" | "error" | "info"
@@ -130,9 +130,9 @@ const IconCss = css`
 export const AlertIcon = styled(AlertTriangle)`
     ${IconCss}
 `
-export const CheckIcon = styled(CheckCircle)`
-    ${IconCss}
-`
+//export const CheckIcon = styled(CheckCircle)`
+ //   ${IconCss}
+//`
 export const InfoIcon = styled(Info)`
     ${IconCss}
 `

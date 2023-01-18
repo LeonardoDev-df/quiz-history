@@ -17,12 +17,18 @@ import {
 } from '../../../../styles/pages/shared/control-panel.styles'
 import { SidebarLayout } from '../../../../components/layouts/sidebar-layout-quiz'
 import { Loading } from '../../../../components/Loading'
-import { nflTeams } from '../../../../data'
+import { nflTeams } from '../../../../datas'
+
+import {
+
+    QuizGaming,
+    Header,
+
+    Four
+} from '../../../../styles/pages/Home'
 
 
-
-const Upload = () => {
- 
+function Upload({  }) {
     const [isLoading, setIsLoading] = useState(false)
     const [info, setInfo] = useState({})
     const [text, setText] = useState('')
@@ -44,9 +50,11 @@ const Upload = () => {
 
 
     const teams = nflTeams.filter((team) => team.name.toLowerCase().includes(searchLowerCase))
+    
     return (
         <Container>
-        
+
+
             <PaperQuiz >
 
             <StForm >
@@ -54,20 +62,29 @@ const Upload = () => {
             <h1>Ranking</h1>
 
             <div className='group'>
-                <div className='arrum'>
-                    
-                    <div className='arru'>
-                        <input 
-                            type="search"
-                            value={search}
-                            onChange={(e) => setSearch(e.target.value)}
-                            placeholder="Digite seu Apelido"
-                            name="q"
-                            required
-                            pattern="[A-z]{2}[0-9]{4}" 
-                        />
-                    </div>
-                </div>
+            <Flex
+                    padding={5}
+                    bgColor=""
+                    height="370px"
+                    container
+                    justifyContent="space-around"
+                    alignItems="flex-start"
+                    >
+
+                    <Box width="370px"
+                        height="300px"
+                        display="flex"
+                    >
+
+                        <div className='bordi'>
+                        <QuizGaming />
+
+
+
+                        </div>
+                    </Box>
+
+                </Flex>
                 
            
                         
@@ -89,7 +106,7 @@ const Upload = () => {
 
                     <div className='borda'>
                         <div className='ranki'>
-                            <h3>RANKING</h3>
+                            <h3>RANKING GERAL</h3>
                         </div>
 
                         <h3 className='melhor'>Pontuação dos Colocados</h3>
@@ -123,9 +140,8 @@ const Upload = () => {
 
 
             </StForm>
-            <Loading isVisible={isLoading} />
+               
             </PaperQuiz>
-
 
             <Copy>&copy; 2023 QuizHistory. All right reserved.</Copy>
         </Container>
@@ -135,3 +151,7 @@ const Upload = () => {
 Upload.Layout = SidebarLayout
 
 export default Upload
+
+
+
+
