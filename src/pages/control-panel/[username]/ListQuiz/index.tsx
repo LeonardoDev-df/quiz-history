@@ -377,7 +377,7 @@ function Upload({ UFOptions }) {
                         <div>
                         <div className='pe'>
                                 <label htmlFor="uf">Título</label>
-                                <Input name="complement" id="complement" value='Nacional' />
+                                <Input name="complement" id="complement" value=' Museu Nacional' />
                         </div>
 
                         <div className='pe'>
@@ -446,7 +446,7 @@ function Upload({ UFOptions }) {
                     <div>
                             <div>
                                 <label htmlFor="province">Título</label>
-                                <Input name="province" id="province" value='Nacional' />
+                                <Input name="province" id="province" value='Museu Nacional' />
                             </div>
 
 
@@ -521,7 +521,7 @@ function Upload({ UFOptions }) {
                         <FormInputContainer gridColumn="1 / 4">
 
                         <label className='vtt'>Informe qual será a Pergunta</label>
-                        <Input name="complement" id="complement" value="Qual ano de inaguração do Museu Nacional ? " />
+                        <Input name="complement" id="complement" value="Qual ano de inauguração do Museu Nacional ? " />
 
                             <div className='flex-container'>
                                 <input type="radio" className='sell' value="Vdd" name="gender" />
@@ -1028,7 +1028,7 @@ function Upload({ UFOptions }) {
 
                 <div  className='butolist'>
                         <div>
-                        <StButton type="submit" toRight>
+                        <StButton onClick={ refreshPage }>
                         CANCELAR
                         </StButton>
                         </div>

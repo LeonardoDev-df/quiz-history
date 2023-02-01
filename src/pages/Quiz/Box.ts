@@ -11,11 +11,17 @@ interface BoxProps {
 export const Box = styled.div<BoxProps>`
 
     .ranki{
-        background-color: darkgray;
-        height: 45px;
+        background-color: rgb(123 45 235 / 95%);
+        height: 55px;
         border-bottom: solid 2px;
         border-bottom-color: black;
-        font-family: Fascinate Inline;
+       font: bold;
+        color: white;
+    }
+
+    .ranki,h3{
+
+      color: white;
     }
 
     .pontua{

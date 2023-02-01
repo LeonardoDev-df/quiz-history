@@ -66,7 +66,7 @@ function Upload() {
 
 
         </Flex >
-            <h3 className='msg'>Ao participar do quiz o usuário recebe o emblema e acumula pontos para classificação no ranking.</h3>
+            <h3 className='msg'>Ao participar do quiz o usuário recebe o emblema para classificação no ranking.</h3>
 
 
                 <Loading isVisible={isLoading} />

@@ -395,7 +395,7 @@ export const PaperQuiz = styled.div`
   }
 
   .borda{
-    border: 3px solid #87f1ff ;
+    border: 3px solid rgba(45,140,235,0.95);
   }
 
   .bordi{
@@ -403,7 +403,13 @@ export const PaperQuiz = styled.div`
   }
 
   .rank{
-    text-align: center;
+   
+    background-color: rgb(123 45 235 / 95%);
+    height: 55px;
+        border-bottom: solid 2px;
+        border-bottom-color: black;
+       font: bold;
+        color: white;
   }
 
   p{
@@ -570,8 +576,6 @@ export const PaperCadastrarQuiz = styled.div`
   .ponto{
     display: flex;
     justify-content: space-between;
-    padding-inline: 40px;
-    padding-block-start: 20px;
   }
 
   .rank{

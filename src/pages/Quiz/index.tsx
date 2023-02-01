@@ -260,9 +260,9 @@ function Upload({ UFOptions }) {
                         display="flex"
                     >
 
-                        <div className='borda'>
+                    <div className='borda'>
                             <div className='ranki'>
-                                <h3>RANKING GERAL</h3>
+                                <h3 className='ranki'>RANKING GERAL</h3>
                             </div>
 
                             <h3 className='melhor'>Pontuação dos Melhores Colocados</h3>

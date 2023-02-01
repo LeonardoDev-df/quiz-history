@@ -1,9 +1,6 @@
-const data = [
-  
-  {
-    
+const data = [ 
+  {  
     category: "Sítio Cultural",
-   
     questions: [
       {
         question: "Quiz não Cadastrado",

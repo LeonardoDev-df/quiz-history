@@ -569,6 +569,13 @@ h2 {
     margin-right: auto;
 }
 
+.quiz{
+    color: var(--primary);
+}
+.quiz:hover, .active {
+    color:#993399
+    !important;
+}
 h3 {
     margin-right: auto;
     font-size: 24px;

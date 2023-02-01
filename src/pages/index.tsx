@@ -231,9 +231,11 @@ export default function Home() {
                     <h3>
                         Entre e confira o
                             <Link href="/Quiz">
-                            <span> Quiz History</span>
+                            <span className='quiz'> Quiz History</span>
+                        
                             </Link>
                     </h3>
+                    ------------------------------------------------------------------------
 
                 </SectionFour>
             </Main>

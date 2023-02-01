@@ -244,21 +244,21 @@ function Upload({ UFOptions }) {
             <div className='pontos'>
 
                      <div>
-                    <h3>5 Pontos</h3>
+                    <h3>30 Pontos</h3>
                     </div>
                     <div>
-                    <h3>7 Pontos </h3>
+                    <h3>50 Pontos </h3>
                     </div>
 
                     <div>
-                    <h3>10 Pontos </h3>
+                    <h3>80 Pontos </h3>
                     </div>
             </div>
 
 
 
 
-            <h3 className='msg'>Ao participar do quiz o usuário recebe o emblema e acumula pontos para classificação no ranking.</h3>
+            <h3 className='msg'>Ao participar do quiz o usuário recebe o emblema para classificação no ranking.</h3>
 
 
                 <Loading isVisible={isLoading} />

@@ -276,9 +276,12 @@ function Upload({ UFOptions }) {
         setQuizes([...quizes, ""]);
     };
 
-    const AlertQuizEditButton = (e) => {
-        e.preventDefault()
-        alert("Cadastro cancelado!");
+    const AlertQuizEditButton = () => {
+        setTimeout(function(){
+            alert("Cadastro cancelado!");
+            window.location.reload();
+         }, 3000);
+       
       };
 
     const styles = {
@@ -435,6 +438,7 @@ function Upload({ UFOptions }) {
                         <div>
                         <StButton             
                         onClick={AlertQuizEditButton}
+                        
                         >      
                         CANCELAR
                         </StButton>
