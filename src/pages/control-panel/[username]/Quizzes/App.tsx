@@ -1,6 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
-
-
+import Link from '../../../../infra/components/Link'
+import {
+  QuizGaming,
+  Footers,
+  LogoFooters,
+  FacebookIcons,
+  InstagramIcons,
+  ArrowRightIcons
+} from '../../../../styles/pages/Home'
 
 // Styles
 import { Global, Wra } from './App.styles';
@@ -31,16 +38,35 @@ const App: React.FC = () => {
                   
           <div className="App">
           
-            {quizState.gameStage === "Start" && <Welcome />}
-            {quizState.gameStage === "Category" && <PickCategory name={name} setName={setName}/>}
-            {quizState.gameStage === "Playing" && <Question name={name} score={score}/>}
+            
+            {quizState.gameStage === "Start" && <PickCategory name={name} setName={setName}/>}
+            {quizState.gameStage === "Category" && <Welcome />}
+            {quizState.gameStage === "Playing" && <Question name={name} score={score} />}
             {quizState.gameStage === "End" && <GameOver />}
           </div>
-       
+
+          <Footers>
+                <section>
+                    <div>
+                     
+                        <p>
+                        "Dê um peixe a um homem e você o alimentará por um dia; ensine um homem 
+                        a pescar e você o alimentará por toda a vida." - Maimônides, filósofo  
+                        </p>
+                    </div>
+                </section>
+
+                <div>
+                    <p>
+                        &copy; 2023 Copyright. All right reserved. Develop with
+                        ❤️ by <span>Leonardo Lopes</span>.
+                    </p>
+                </div>
+            </Footers>
         
         </PaperStart>
         <Loading isVisible={isLoading} />
-        <Copy>&copy; 2021 RVHistory. All right reserved.</Copy>
+        
     </>
   );
 };

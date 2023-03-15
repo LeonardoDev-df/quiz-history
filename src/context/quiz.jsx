@@ -1,7 +1,12 @@
 import { createContext, useReducer } from "react";
 import questions from "../data/questions_complete";
+import axios from 'axios'
 
+import { cadastrarUsuario } from "../components/Quiz/GameOver"
+import { resolve } from "path";
+import { rejects } from "assert";
 const STAGES = ["Start", "Category", "Playing", "End"];
+
 
 const initialState = {
   gameStage: STAGES[0],
@@ -13,9 +18,11 @@ const initialState = {
   optionToHide: null,
 };
 
-console.log(initialState);
 
-const quizReducer = (state, action) => {
+console.log(initialState);
+console.log(initialState.questions);
+
+const quizReducer = (state, action, score) => {
   switch (action.type) {
     case "CHANGE_STAGE":
       return {
@@ -65,9 +72,17 @@ const quizReducer = (state, action) => {
       };
     }
 
-    case "NEW_GAME": {
+    case "SAVE_GAME": {
+      
+      cadastrarUsuario(score)
       console.log(questions);
       console.log(initialState);
+      return initialState;
+    }
+
+    case "NEW_GAME": {
+      
+      
       return initialState;
     }
 

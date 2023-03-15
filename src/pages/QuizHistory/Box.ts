@@ -45,17 +45,6 @@ export const Box = styled.div<BoxProps>`
         padding-left: 10px;
         padding-right: 10px;
     }
-    div .displa{
-      display: none;
-      
-    }
-
-    .emblemas{
-      position: absolute;
-      margin-left: -20%;
-      width: 15%; 
-      margin-top: -15%;
-    }
 
     .ponto{
         display: flex;

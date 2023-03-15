@@ -58,11 +58,11 @@ function Upload() {
 
         >
 
-            <h3>30 Pontos no Quiz </h3>
+            <h3>10 Pontos no Quiz </h3>
 
             <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;50 Pontos no Quiz</h3>
 
-            <h3>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;80 Pontos no Quiz</h3>
+            <h3>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;100 Pontos no Quiz</h3>
 
 
         </Flex >

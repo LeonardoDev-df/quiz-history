@@ -244,14 +244,14 @@ function Upload({ UFOptions }) {
             <div className='pontos'>
 
                      <div>
-                    <h3>30 Pontos</h3>
+                    <h3>10 Pontos</h3>
                     </div>
                     <div>
                     <h3>50 Pontos </h3>
                     </div>
 
                     <div>
-                    <h3>80 Pontos </h3>
+                    <h3>100 Pontos </h3>
                     </div>
             </div>
 

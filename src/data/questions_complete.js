@@ -1,6 +1,20 @@
-const data = [ 
+
+const data = await fetch('http://localhost:3333/questions/list')
+.then(data => {
+return data.json();
+});
+
+
+const datas = [ 
   {  
     category: "Sítio Cultural",
+      //titulos: [{
+      //titulo: [
+       // "Museu Nacional",
+       // "Museu do Catetinho",
+      //  ],
+     // },
+   // ],
     questions: [
       {
         question: "Quiz não Cadastrado",
@@ -11,6 +25,8 @@ const data = [
   },
   {
     category: "Monumento",
+   
+   
     questions: [
       {
         question: "Quiz não Cadastrado",
@@ -20,6 +36,8 @@ const data = [
   },
   {
     category: "Museu",
+    titulos: "Museu Nacional",
+    titullo: "Museu do Catetinho",
     questions: [
       {
         question: "Qual ano de inaguração do Museu Nacional ?",
@@ -78,8 +96,8 @@ const data = [
           "O que é o Museu Nacional da República?",
         options: [
           "É um espaço que insere Brasília no circuito internacional das artes e mostra o que há de melhor na arte brasileira.", 
-          "O Museu Nacional da República é integrante do Conjunto Cultural da República. ", 
-          "Obra de Oscar Niemeyer, o Museu começou a ser construído em 1999. ", 
+          "O Museu Nacional da República é integrante do Conjunto Cultural da República.", 
+          "Obra de Oscar Niemeyer, o Museu começou a ser construído em 1999.", 
           "Foi idealizado para fazer parte do Setor Cultural Sul da Nova Capital."],
         answer: "É um espaço que insere Brasília no circuito internacional das artes e mostra o que há de melhor na arte brasileira.",
       },

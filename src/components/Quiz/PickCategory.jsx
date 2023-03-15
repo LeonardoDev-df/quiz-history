@@ -9,14 +9,21 @@ import Category from '../../assets/category.png';
 import { PickCate } from './styles'
 
 const PickCategory = ({ name , setName  }) => {
+ 
   const [quizState, dispatch] = useContext(QuizContext);
-
-  function chooseCategoryAndReorderQuestions(category) {
-
+  console.log(quizState)
+  
+  function chooseCategoryAndReorderQuestions(category, categories) {
+    console.log(category)
     
-    dispatch({ type: "START_GAME", payload: category });
+    if(category == "Museu"){
+      dispatch({ type: "CHANGE_STAGE", payload: category });
+    }else{
+      alert("Nenhum quiz cadastrado nesta categoria!")
+    }
+   
 
-    dispatch({ type: "REORDER_QUESTIONS" });
+    //dispatch({ type: "REORDER_QUESTIONS" });
   }
   const styles = {
     textField: {
@@ -28,47 +35,14 @@ const PickCategory = ({ name , setName  }) => {
     <>
     <PickCate>
 
-    <div className="settings_select">
-          <TextField
-            fontSize="30px"
-            style={{ marginBottom: 35 }}
-            label="Digite seu Apelido: "
-            variant="outlined"
-            inputProps={{style: {fontSize: 18}}} // font size of input text
-            onChange={(e) => setName(e.target.value)}
-          />
-           <TextField
-            select
-            style={{ marginBottom: 30 }}
-            label="Selecione o nível de dificuldade:"
-            inputProps={{style: {fontSize: 25}}} // font size of input text
-            variant="outlined"
-          >
-            <MenuItem key="Facil" value="facil">
-              <div className="fac">
-              Fácil
-              </div>
-           
-            </MenuItem>
-            <MenuItem key="Medio " value="medio">
-            <div className="fac">
-              Médio
-              </div>
-            </MenuItem>
-            <MenuItem key="Dificil" value="dificil">
-            <div className="fac">
-             Díficil
-              </div>
-            </MenuItem>
-          </TextField>
-      </div>
+   
     <div className="category">
      
-      
 
       <h2>Escolha uma categoria</h2>
       {quizState.questions.map((question) => (
         <button
+        
           onClick={() => chooseCategoryAndReorderQuestions(question.category)}
           key={question.category}
         >
@@ -81,8 +55,8 @@ const PickCategory = ({ name , setName  }) => {
               src={Category} 
               alt="Laptops" 
               placeholder="blur" 
-              width={600}
-              height={400}
+              width={850}
+              height={650}
               />
         </div>
     </div>

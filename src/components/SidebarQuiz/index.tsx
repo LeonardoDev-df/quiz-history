@@ -33,7 +33,7 @@ const userTabs = [
         id: 1,
         icon: StDashboard,
         title: 'Bem-vindo',
-        urlPath: 'welcome',
+        urlPath: 'QuizHistory',
         isActive: false
     },
     {

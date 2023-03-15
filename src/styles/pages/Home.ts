@@ -770,3 +770,236 @@ export const ArrowRightIcon = styled(KeyboardArrowRight)`
 
     margin: 0 1rem;
 `;
+
+
+// Footer part
+export const Footers = styled.footer`
+background: rgb(21 108 196 / 95%);
+padding-left: -2.2rem;
+
+margin-top: 7.0rem;
+color: var(--gray_light);
+position: absolute;
+margin-left: -23px;
+& > section {
+    padding: 0rem 0;
+    height: 70px;
+
+    width: 1615px;
+    margin: 20px;
+
+    /* display: flex;
+    align-items: center; */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+
+    text-align: center;
+    grid-gap: 29px;
+
+
+    div {
+        grid-column: 2 / 3;
+
+        p {
+            margin: 2.4rem 0;
+        }
+    }
+
+    li {
+        align-items: center;
+        margin-top: .6rem;
+
+        a {
+            color: var(--gray_light);
+        }
+    }
+}
+
+/* Parte final */
+& > div {
+    height: 2.4rem;
+
+    border-top: 1px solid var(--text);
+
+    display: flex;
+    align-items: center;
+
+    p {
+        width: min(1324px, 100%);
+        margin-left: 550px;
+        margin-top: -40px;
+
+        span {
+            color: var(--secondary);
+        }
+    }
+}
+
+
+    @media screen and (max-width: 540px) {
+        & > section {
+            div {
+                grid-column: auto;
+            }
+        }
+
+        & > div {
+            padding: 2.4rem 0;
+        }
+    }
+`;
+
+
+export const LogoFooters = styled(Object(AssetLogo))`
+    width: 50%;
+    height: auto;
+
+    g {
+        fill: var(--gray_light);
+    }
+`;
+
+const IconFooterCsss = css`
+    width: 32px;
+    height: 32px;
+
+    fill: var(--gray_light);
+
+    &:hover {
+        fill: ${props => shade(0.2, props.theme.colors.gray_light)};
+    }
+`;
+
+export const FacebookIcons = styled(Facebook)`
+    ${IconFooterCss}
+
+    margin-right: 1rem;
+`;
+export const InstagramIcons = styled(Instagram)`
+    ${IconFooterCss}
+`;
+
+export const ArrowRightIcons = styled(KeyboardArrowRight)`
+    width: 24px;
+    height: 24px;
+
+    fill: var(--title);
+
+    margin: 0 1rem;
+`;
+
+// Footer part
+export const Footersq = styled.footer`
+background: rgb(21 108 196 / 95%);
+padding-left: -2.2rem;
+
+margin-top: 7.0rem;
+color: var(--gray_light);
+position: absolute;
+margin-left: -23px;
+& > section {
+    padding: 0rem 0;
+    height: 117px;
+
+    width: 1615px;
+    margin: 20px;
+
+    /* display: flex;
+    align-items: center; */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+
+    text-align: center;
+    grid-gap: 29px;
+
+
+    div {
+        grid-column: 2 / 3;
+
+        p {
+            margin: 2.4rem 0;
+        }
+    }
+
+    li {
+        align-items: center;
+        margin-top: .6rem;
+
+        a {
+            color: var(--gray_light);
+        }
+    }
+}
+
+/* Parte final */
+& > div {
+    height: 2.4rem;
+
+    border-top: 1px solid var(--text);
+
+    display: flex;
+    align-items: center;
+
+    p {
+        width: min(1324px, 100%);
+        margin-left: 550px;
+        margin-top: -40px;
+
+        span {
+            color: var(--secondary);
+        }
+    }
+}
+
+
+    @media screen and (max-width: 540px) {
+        & > section {
+            div {
+                grid-column: auto;
+            }
+        }
+
+        & > div {
+            padding: 2.4rem 0;
+        }
+    }
+`;
+
+
+export const LogoFootersq = styled(Object(AssetLogo))`
+    width: 50%;
+    height: auto;
+
+    g {
+        fill: var(--gray_light);
+    }
+`;
+
+const IconFooterCsssq = css`
+    width: 32px;
+    height: 32px;
+
+    fill: var(--gray_light);
+
+    &:hover {
+        fill: ${props => shade(0.2, props.theme.colors.gray_light)};
+    }
+`;
+
+export const FacebookIconsq = styled(Facebook)`
+    ${IconFooterCss}
+
+    margin-right: 1rem;
+`;
+export const InstagramIconsq = styled(Instagram)`
+    ${IconFooterCss}
+`;
+
+export const ArrowRightIconsq = styled(KeyboardArrowRight)`
+    width: 24px;
+    height: 24px;
+
+    fill: var(--title);
+
+    margin: 0 1rem;
+`;

@@ -230,7 +230,7 @@ export default function Home() {
 
                     <h3>
                         Entre e confira o
-                            <Link href="/Quiz">
+                            <Link href="/QuizHistory">
                             <span className='quiz'> Quiz History</span>
                         
                             </Link>

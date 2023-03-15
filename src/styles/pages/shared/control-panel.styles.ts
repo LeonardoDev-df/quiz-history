@@ -243,6 +243,58 @@ export const Paper = styled.div`
         background-color: red; 
     }
 
+    .butolist{
+        display: flex;
+
+        justify-content: space-around;
+        padding-top: 15px;
+    }
+
+
+    
+    .buttaun{
+      color: white;
+      display: flex;
+      width: fit-content;
+      height: 50px;
+      border-radius: 4px;
+      justify-content: center;
+      padding: 1rem 2.4rem;
+      font-size: 2rem;
+      font-weight: 900;
+
+      ${props => !props.color && css`
+        background: ${props.theme.colors.primary};
+
+        :hover {
+            background: ${shade(0.1, props.theme.colors.primary)} !important;
+        }
+      `}
+      margin-left: 23px;
+    margin-top: 1px;
+    }
+
+    .buttau{
+      color: white;
+      display: flex;
+      width: fit-content;
+      height: fit-content;
+      border-radius: 4px;
+      justify-content: center;
+      padding: 1rem 2.4rem;
+      font-size: 2rem;
+      font-weight: 900;
+
+      ${props => !props.color && css`
+        background: ${props.theme.colors.primary};
+
+        :hover {
+            background: ${shade(0.1, props.theme.colors.primary)} !important;
+        }
+      `}
+    margin-top: 50px;
+    }
+
     .App {
         text-align: center;
         padding-top: 3rem;
@@ -395,6 +447,19 @@ export const PaperQuiz = styled.div`
   }
 
   .borda{
+    
+    height: 355px;
+    border-bottom: none;
+  }
+
+  .pont{
+    color: rgb(123 45 235 / 125%);
+  }
+
+  .scroll{
+    overflow-y: scroll;
+    width: 340px;
+    height: 300px;
     border: 3px solid rgba(45,140,235,0.95);
   }
 
@@ -447,7 +512,109 @@ export const PaperCadastrarQuiz = styled.div`
     height: fit-content;
     border-radius: 8px;
 
+    .selecion{
+      width: 70%;
+      height: 78%;
+      display: flex;
+      font-size: 20px;
+      justify-content: center;
+      border-radius: 8px 0 0 8px;
+      background: ${props => darken(0.045, props.theme.colors.paper)};
+      border-radius: 8px;
+      font-weight: 600;
 
+      border: solid 1px ${props => rgba(props.theme.colors.text, 0.15)};
+      padding: .8rem 0;
+      margin-right: 1.2rem;
+      background: ${props => props.theme.colors.background};
+    }
+
+    .selec{
+      width: 150%;
+      height: 78%;
+      display: flex;
+      font-size: 20px;
+      justify-content: center;
+      border-radius: 8px 0 0 8px;
+      background: ${props => darken(0.045, props.theme.colors.paper)};
+      border-radius: 8px;
+      font-weight: 600;
+
+      border: solid 1px ${props => rgba(props.theme.colors.text, 0.15)};
+      padding: .8rem 0;
+      margin-right: 1.2rem;
+      background: ${props => props.theme.colors.background};
+    }
+
+    .flex{
+      display: flex;
+    }
+
+    .arrumando{
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+      justify-content: space-evenly;
+    }
+
+    .arruma{
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+      justify-content: space-evenly;
+      margin-right: 6.8rem;
+    }
+
+    .selecat{
+      
+      justify-content: center;
+    }
+
+    .setting{
+      justify-content: center;
+      font-size: 20px;
+      border-radius: 8px 0 0 8px;
+      width: 100%;
+      height: 80%;
+      display: flex;
+      align-items: center;
+      background: ${props => darken(0.045, props.theme.colors.paper)};
+      border-radius: 8px;
+      font-weight: 600;
+
+      border: solid 1px ${props => rgba(props.theme.colors.text, 0.15)};
+      padding: .8rem 0;
+      margin-right: 1.2rem;
+      background: ${props => props.theme.colors.background};
+    }
+
+    .buttau{
+      color: white;
+      display: flex;
+      width: fit-content;
+      height: fit-content;
+      border-radius: 4px;
+      justify-content: center;
+      padding: 1rem 2.4rem;
+      font-size: 2rem;
+      font-weight: 900;
+
+      ${props => !props.color && css`
+        background: ${props.theme.colors.primary};
+
+        :hover {
+            background: ${shade(0.1, props.theme.colors.primary)} !important;
+        }
+      `}
+
+    margin-left: 373px;
+    margin-top: 50px;
+    }
+    
+    .opt{
+      
+      font-size: 20px;
+    }
 
     .editar{
         margin-left: -3px;
@@ -490,9 +657,9 @@ export const PaperCadastrarQuiz = styled.div`
     }
 
     .organiz{
-        padding-inline: 30px;
+        padding-inline: 35px;
         justify-content: space-around;
-        padding-top: 10px;
+        padding-top: 45px;
     }
 
     .organizi{
@@ -711,6 +878,9 @@ export const StForm = styled(Form)`
         width: 100%;
         padding-left: 120px;
     }
+    .arru{
+      border: solid;
+    }
 
     
     input{
@@ -808,7 +978,128 @@ export const StFormStart = styled(Form)`
 
 export const StFormQuiz = styled(Form)`
     .pesquist{
-        margin-left: 350px;
+        margin-left: 360px;
+    }
+    .numb{
+      display: block;
+    }
+
+    .abaixo{
+      display: flex;
+      color: red;
+    }
+
+    .buttau{
+      color: white;
+      display: flex;
+      width: fit-content;
+      height: fit-content;
+      border-radius: 4px;
+      justify-content: center;
+      padding: 1rem 2.4rem;
+      font-size: 2rem;
+      font-weight: 900;
+
+      ${props => !props.color && css`
+        background: ${props.theme.colors.primary};
+
+        :hover {
+            background: ${shade(0.1, props.theme.colors.primary)} !important;
+        }
+      `}
+
+    margin-left: 373px;
+    margin-top: 50px;
+    }
+
+    .respos{
+      padding-top: .8rem 0;
+      
+      justify-content: space-evenly;
+      font-size: 20px;   
+      width: 50%;
+      height: 20%;
+      align-items: center;
+      font-weight: 600;
+      padding-bottom: 200px;
+      padding: .8rem 0;
+      margin-left: 7.6rem;  
+    }
+
+    .respos, p{
+      margin-left: 5.6rem;  
+      color: #848484;
+    }
+    .radio{
+      width: 35px;;
+      height: 20px;  
+    }
+
+    .resposta{
+      padding-bottom: 20px;
+      display: flex;
+      justify-content: space-evenly;
+      font-size: 20px;
+      border-radius: 8px 0 0 8px;
+      width: 150%;
+      height: 100%;
+      align-items: center;
+      background: ${props => darken(0.045, props.theme.colors.paper)} !important;
+      border-radius: 8px;
+      font-weight: 600;
+
+      border: solid 1px ${props => rgba(props.theme.colors.text, 0.15)};
+      padding: .8rem 0;
+      margin-left: 5.6rem;
+      background: ${props => props.theme.colors.background};
+    }
+    .pe{
+      padding-bottom: 20px;
+    }
+
+    .pergunta{
+      justify-content: center;
+      font-size: 20px;
+      border-radius: 8px 0 0 8px;
+      width: 100%;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      background: ${props => darken(0.045, props.theme.colors.paper)};
+      border-radius: 8px;
+      font-weight: 600;
+
+      border: solid 1px ${props => rgba(props.theme.colors.text, 0.15)};
+      padding: .8rem 0;
+      margin-right: 1.2rem;
+      background: ${props => props.theme.colors.background};
+    }
+
+    .quist{
+     
+        display:flex;
+        justify-content: space-around;
+        
+    }
+    .question{
+     
+    }
+    .orga{
+      justify-content: center;
+      font-size: 20px;
+      border-radius: 8px 0 0 8px;
+      width: 70%;
+      height: 80%;
+      display: flex;
+      align-items: center;
+      background: ${props => darken(0.045, props.theme.colors.paper)};
+      border-radius: 8px;
+      font-weight: 600;
+
+      border: solid 1px ${props => rgba(props.theme.colors.text, 0.15)};
+      padding: .8rem 0;
+      margin-right: 1.2rem;
+      background: ${props => props.theme.colors.background};
     }
 
     .pep{
@@ -915,9 +1206,70 @@ export const FormQuiz = styled.div<{ mult?: boolean }>`
         diplay: flex;
     }
 
+    .respos{
+      padding-top: .8rem 0;
+      display: flex;
+      justify-content: space-evenly;
+      font-size: 20px;   
+      width: 80%;
+      height: 20%;
+      align-items: center;
+      font-weight: 600;
+      padding-bottom: 200px;
+      padding: .8rem 0;
+      margin-left: 15.6rem;  
+    }
+
+    .radio{
+      width: 35px;;
+      height: 20px;  
+    }
+
+    .resposta{
+      padding-bottom: 20px;
+      display: flex;
+      justify-content: space-evenly;
+      font-size: 20px;
+      border-radius: 8px 0 0 8px;
+      width: 150%;
+      height: 100%;
+      align-items: center;
+      background: ${props => darken(0.045, props.theme.colors.paper)} !important;
+      border-radius: 8px;
+      font-weight: 600;
+
+      border: solid 1px ${props => rgba(props.theme.colors.text, 0.15)};
+      padding: .8rem 0;
+      margin-left: 5.6rem;
+      background: ${props => props.theme.colors.background};
+    }
+    .pe{
+      padding-bottom: 20px;
+    }
+
+    .pergunta{
+      justify-content: center;
+      font-size: 20px;
+      border-radius: 8px 0 0 8px;
+      width: 100%;
+      height: 80%;
+      display: flex;
+      align-items: center;
+      background: ${props => darken(0.045, props.theme.colors.paper)};
+      border-radius: 8px;
+      font-weight: 600;
+
+      border: solid 1px ${props => rgba(props.theme.colors.text, 0.15)};
+      padding: .8rem 0;
+      margin-right: 1.2rem;
+      background: ${props => props.theme.colors.background};
+    }
+
     .quist{
+     
         display:flex;
         justify-content: space-around;
+        
     }
 
     .campedit{
@@ -957,8 +1309,9 @@ export const FormQuiz = styled.div<{ mult?: boolean }>`
 
     .buttonaddicty{
         font-weight: bold;
-       text-align:center;
-        margin-left: -135px
+        text-align:center;
+        margin-left: -135px;
+        margin-top: 16px;
     }
 
     .buttonedit{
@@ -989,10 +1342,21 @@ export const FormQuiz = styled.div<{ mult?: boolean }>`
         margin-left: 75px;
     }
     .titu{
-        padding-bottom: 30px;
-        width: 300px;
+        padding-bottom: 15px;
+        width: 230px;
+        border: solid 2px;
+        text-align: center;
+        font-size: 20px;
+        height: 3.9rem;
     }
 
+    .titua{
+      padding-bottom: 60px;
+      width: 230px;
+      text-align: center;
+      font-size: 20px;
+      height: 2.6rem;
+    }
     .pesqti{
         padding-bottom: 20px;
         width: 300px;

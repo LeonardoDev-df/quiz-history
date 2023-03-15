@@ -1,49 +1,63 @@
 import React, {
-    useContext,
-    useRef,
     useEffect,
-    useState,
-    useMemo
+    useState
 } from 'react'
 import { Flex } from './Flex';
-import Image from 'next/image'
 import { Box } from './Box';
+import axios from 'axios'
 import {
     Container,
     PaperQuiz,
-    EmblemSilver,
     Copy,
     StForm
 } from '../../../../styles/pages/shared/control-panel.styles'
 import { SidebarLayout } from '../../../../components/layouts/sidebar-layout-quiz'
 import { Loading } from '../../../../components/Loading'
-import { nflTeams } from '../../../../data'
+import EmblemOuro  from "../../../../assets/illustrations/ouro.svg"
 
 
 
 const Upload = () => {
- 
+    const Ouro = EmblemOuro
     const [isLoading, setIsLoading] = useState(false)
     const [info, setInfo] = useState({})
     const [text, setText] = useState('')
     const [search, setSearch] = React.useState("")
+    const [show, setShow] = useState(true);
     console.log(search)
 
     const searchLowerCase = search.toLocaleLowerCase()
 
-    useEffect (() => {
-        if (text) {
-            fetch(`'../../../../data'`)
-            .then((response) => response.json())
-            .then((response) => {
-                setInfo(response)
-                console.log(response)
-            })
+    const [users, setUsers] = useState([]);
+
+    const getUsers = async () => {
+        try {
+            const response = await axios.get(
+                "http://localhost:3333/users"  
+            );
+            const data = response.data
+
+            console.log(data);
+            setUsers(data);
+        } catch (error) {
+            console.log(error)
         }
-    }, [text])
+    }
+
+    const addQuizEditButton = (e) => {
+       
+        setSearch(e.target.value)
+
+        setShow((s) => !s)
+      };
 
 
-    const teams = nflTeams.filter((team) => team.name.toLowerCase().includes(searchLowerCase))
+    useEffect(() =>{
+        getUsers();
+    }, []);
+
+
+    const result = users.filter((user) => user.apelido.toLowerCase().includes(searchLowerCase))
     return (
         <Container>
         
@@ -56,11 +70,12 @@ const Upload = () => {
             <div className='group'>
                 <div className='arrum'>
                     
-                    <div className='arru'>
+                    <div >
                         <input 
+                            className='arru'
                             type="search"
                             value={search}
-                            onChange={(e) => setSearch(e.target.value)}
+                            onChange={addQuizEditButton}
                             placeholder="Digite seu Apelido"
                             name="q"
                             required
@@ -80,40 +95,45 @@ const Upload = () => {
                 container
                 justifyContent="space-around"
                 alignItems="flex-start"
+                
                 >
                
                 <Box width="370px"
                     height="300px"
                     display="flex"
                 >
+                    <div className='scroll'>
+                        <div className='borda'>
+                            <div className='ranki'>
+                                <h3 className='ranki'>RANKING GERAL</h3>
+                            </div>
 
-                    <div className='borda'>
-                        <div className='ranki'>
-                            <h3>RANKING</h3>
-                        </div>
+                            <h3 className='melhor'>Pontuação dos Melhores Colocados</h3>
 
-                        <h3 className='melhor'>Pontuação dos Colocados</h3>
-
-                        <div className='pontua'>
-                            <div>Apelido</div> <div>Pontos</div>
-                            
-                        </div>
-                        {teams.map((team) => (
+                            <div className='pontua'>
+                                <div>Apelido</div> <div>Pontos</div>
+                            </div>
+                            {result
+                            .sort( (a: any, b: any) => a.pontos > b.pontos ? - 10 : 10 )
+                            .map((user) => (
                             <>
-                            <div>
-                                <div className='ponto' key={team.name}>
-                                    <div>{team.name} </div>
-                                    <div>{team.pontos} </div>
+                            <div >
+                                <div className='ponto' key={user.apelido}>
+                                    <div>{user.apelido} </div>
+                                    <div className='pont'>{user.pontos} </div>
                                 </div>                             
                             </div>
-                            <div style={{width: '25%', height: '60%',
-                                         marginLeft: "-40%", position: 'absolute'
-                                         ,marginTop: "-15%",}}>
-                                <img  src={team.div}   />
+                            <div className='displa'style={{ display: show ? "none" : "flex" }}>
+                                <div className='emblema'>
+                                    <img  className='emblemas' src={user.emblema}   />
+                                </div>
+
                             </div>
+                            
                             </>    
                         ))} 
-                    
+                           
+                        </div>
                     </div>
                 </Box>
 
